@@ -19,6 +19,16 @@ use App\Mail\ActivationEmail;
 use App\Http\Controllers\Auth\ActivationController;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\SearchMentorController;  // 確保你引入了MentorController
+use App\Http\Controllers\ScheduleController;  // 用您實際的控制器名稱替換 "YourController"
+
+
+
+Route::get('/schedule-timings', [ScheduleController::class, 'showSchedule'])->name('schedule-timings');
+
+// Route::get('/schedule-timings', function () {
+//     return view('schedule-timings');
+// })->name('schedule-timings');
+Route::post('/schedule-timings', [ScheduleController::class, 'saveSchedule'])->name('save-schedule');
 
 
 // 當訪問/search時，調用MentorController的index方法
@@ -113,9 +123,12 @@ Route::get('/dashboard-mentor', function () {
 Route::get('/bookings', function () {
     return view('bookings');
 })->name('bookings');
-Route::get('/schedule-timings', function () {
-    return view('schedule-timings');
-})->name('schedule-timings');
+
+
+
+
+
+
 Route::get('/mentee-list', function () {
     return view('mentee-list');
 })->name('mentee-list');
