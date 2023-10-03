@@ -82,7 +82,7 @@
 												<!-- Schedule Header -->
 												<div class="schedule-header">
 													<!-- New 5-course-name tabs -->
-													<div class="schedule-nav course-nav">
+													<!-- <div class="schedule-nav course-nav">
 														<ul class="nav nav-tabs nav-justified">
 															@foreach($courses as $course)
 															<li class="nav-item">
@@ -90,7 +90,7 @@
 															</li>
 															@endforeach
 														</ul>
-													</div>
+													</div> -->
 
 													<!-- Schedule Nav -->
 													<div class="schedule-nav">
@@ -119,446 +119,825 @@
 															</li>
 														</ul>
 													</div>
-													<!-- /Schedule Nav -->
+
 
 												</div>
-												<!-- /Schedule Header -->
-
-												<!-- Schedule Content -->
-												<div class="tab-content schedule-cont">
-
-													<!-- Sunday Slot -->
-													<div id="slot_sunday" class="tab-pane fade">
-														<h4 class="card-title d-flex justify-content-between">
-															<span>Time Slots</span>
-															<a class="edit-link" data-bs-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-														</h4>
-														<p class="text-muted mb-0">Not Available</p>
-													</div>
-													<!-- /Sunday Slot -->
-
-													<!-- Monday Slot -->
-													<div id="slot_monday" class="tab-pane fade show active">
-														<h4 class="card-title d-flex justify-content-between">
-															<span>Time Slots</span>
-															<a class="edit-link" data-bs-toggle="modal" href="#edit_time_slot"><i class="fa fa-edit mr-1"></i>Edit</a>
-														</h4>
-
-														<!-- Slot List -->
-														<div class="user-times">
-															<div class="user-slot-list">
-																8:00 pm - 11:30 pm
-																<a href="javascript:void(0)" class="delete_schedule">
-																	<i class="fa fa-times"></i>
-																</a>
-															</div>
-															<div class="user-slot-list">
-																11:30 pm - 1:30 pm
-																<a href="javascript:void(0)" class="delete_schedule">
-																	<i class="fa fa-times"></i>
-																</a>
-															</div>
-															<div class="user-slot-list">
-																3:00 pm - 5:00 pm
-																<a href="javascript:void(0)" class="delete_schedule">
-																	<i class="fa fa-times"></i>
-																</a>
-															</div>
-															<div class="user-slot-list">
-																6:00 pm - 11:00 pm
-																<a href="javascript:void(0)" class="delete_schedule">
-																	<i class="fa fa-times"></i>
-																</a>
-															</div>
-														</div>
-														<!-- /Slot List -->
-
-													</div>
-													<!-- /Monday Slot -->
-
-													<!-- Tuesday Slot -->
-													<div id="slot_tuesday" class="tab-pane fade">
-														<h4 class="card-title d-flex justify-content-between">
-															<span>Time Slots</span>
-															<a class="edit-link" data-bs-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-														</h4>
-														<p class="text-muted mb-0">Not Available</p>
-													</div>
-													<!-- /Tuesday Slot -->
-
-													<!-- Wednesday Slot -->
-													<div id="slot_wednesday" class="tab-pane fade">
-														<h4 class="card-title d-flex justify-content-between">
-															<span>Time Slots</span>
-															<a class="edit-link" data-bs-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-														</h4>
-														<p class="text-muted mb-0">Not Available</p>
-													</div>
-													<!-- /Wednesday Slot -->
-
-													<!-- Thursday Slot -->
-													<div id="slot_thursday" class="tab-pane fade">
-														<h4 class="card-title d-flex justify-content-between">
-															<span>Time Slots</span>
-															<a class="edit-link" data-bs-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-														</h4>
-														<p class="text-muted mb-0">Not Available</p>
-													</div>
-													<!-- /Thursday Slot -->
-
-													<!-- Friday Slot -->
-													<div id="slot_friday" class="tab-pane fade">
-														<h4 class="card-title d-flex justify-content-between">
-															<span>Time Slots</span>
-															<a class="edit-link" data-bs-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-														</h4>
-														<p class="text-muted mb-0">Not Available</p>
-													</div>
-													<!-- /Friday Slot -->
-
-													<!-- Saturday Slot -->
-													<div id="slot_saturday" class="tab-pane fade">
-														<h4 class="card-title d-flex justify-content-between">
-															<span>Time Slots</span>
-															<a class="edit-link" data-bs-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-														</h4>
-														<p class="text-muted mb-0">Not Available</p>
-													</div>
-													<!-- /Saturday Slot -->
-
-												</div>
-												<!-- /Schedule Content -->
 
 											</div>
+
 										</div>
 									</div>
-
 								</div>
+								<h4 class="card-title d-flex justify-content-between">
+									<span>Time Slots</span>
+									<a class="edit-link" data-bs-toggle="modal" href="#edit_time_slot"><i class="fa fa-edit mr-1"></i>Edit</a>
+								</h4>
 							</div>
 						</div>
-						<div class="card booking-schedule schedule-widget">
+					</div>
+					<div class="card booking-schedule schedule-widget">
+						<!-- Schedule Header -->
+						<div class="schedule-header">
+							<div class="row">
+								<div class="col-md-12">
 
-							<!-- Schedule Header -->
-							<div class="schedule-header">
-								<div class="row">
-									<div class="col-md-12">
+									<!-- Day Slot -->
+									<div class="day-slot">
+										<div class="row">
 
-										<!-- Day Slot -->
-										<div class="day-slot">
-											<div class="row">
-												<div class="col-12 col-sm-4 col-md-6">
-													<h4 class="mb-1">11 November 2019</h4>
-													<p class="text-muted">Monday</p>
-												</div>
-												<div class="col-12 col-sm-8 col-md-6 text-sm-end">
-													<div class="bookingrange btn btn-white btn-sm mb-3">
-														<i class="far fa-calendar-alt me-2"></i>
-														<span></span>
-														<i class="fas fa-chevron-down ml-2"></i>
-													</div>
-												</div>
+											<!--顯示今天的日期跟週幾-->
+											<div class="col-12 col-sm-4 col-md-6">
+												<h4 class="mb-1" id="current-date"></h4>
+												<p class="text-muted" id="current-day"></p>
 											</div>
-											<!-- Schedule Widget -->
-											<div class="card booking-schedule schedule-widget">
+											<!-- @foreach ($classSchedules as $schedule)
+											<p>{{ $schedule->schedule_date}}-{{ $schedule->day_of_week }} - {{ $schedule->start_time }} to {{ $schedule->end_time }}-{{ $schedule->status}}</p>
+											@endforeach -->
 
-												<!-- Schedule Header -->
-												<div class="schedule-header">
-													<div class="row">
-														<div class="col-md-12">
+											<!--顯示多種行事曆模式-->
 
-															<!-- Day Slot -->
-															<div class="day-slot">
-																<ul>
-																	<li class="left-arrow">
-																		<a href="">
-																			<i class="fa fa-chevron-left"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<span>Mon</span>
-																		<span class="slot-date">11 Nov <small class="slot-year">2019</small></span>
-																	</li>
-																	<li>
-																		<span>Tue</span>
-																		<span class="slot-date">12 Nov <small class="slot-year">2019</small></span>
-																	</li>
-																	<li>
-																		<span>Wed</span>
-																		<span class="slot-date">13 Nov <small class="slot-year">2019</small></span>
-																	</li>
-																	<li>
-																		<span>Thu</span>
-																		<span class="slot-date">14 Nov <small class="slot-year">2019</small></span>
-																	</li>
-																	<li>
-																		<span>Fri</span>
-																		<span class="slot-date">15 Nov <small class="slot-year">2019</small></span>
-																	</li>
-																	<li>
-																		<span>Sat</span>
-																		<span class="slot-date">16 Nov <small class="slot-year">2019</small></span>
-																	</li>
-																	<li>
-																		<span>Sun</span>
-																		<span class="slot-date">17 Nov <small class="slot-year">2019</small></span>
-																	</li>
-																	<li class="right-arrow">
-																		<a href="">
-																			<i class="fa fa-chevron-right"></i>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-															<!-- /Day Slot -->
 
+										</div>
+
+										<!-- Schedule Widget -->
+										<div class="card booking-schedule schedule-widget">
+											<!-- Schedule Header -->
+											<div class="schedule-header">
+												<div class="row align-items-center">
+													<div class="col-md-1">
+														<!-- Left Arrow Button -->
+														<div class="arrow-buttons">
+															<button id="prevWeek" class="btn custom-btn">←</button>
 														</div>
-
+													</div>
+													<div class="col-md-10">
+														<!-- Day Slot -->
+														<div class="day-slot">
+															<ul id="day-list">
+																<!-- Your list items here -->
+															</ul>
+														</div>
+													</div>
+													<div class="col-md-1">
+														<!-- Right Arrow Button -->
+														<div class="arrow-buttons">
+															<button id="nextWeek" class="btn custom-btn">→</button>
+														</div>
 													</div>
 												</div>
-
 											</div>
 										</div>
-										<!-- /Day Slot -->
 
 									</div>
+									<!-- /Day Slot -->
 								</div>
-
-								<!-- Time Slot -->
+							</div>
+							<!-- Time Slot -->
+							<div class="timing-container">
 								<div class="time-slot">
-									<ul class="clearfix">
-										<li>
-											<a class="timing" href="#">
-												<span>9:00</span> <span>AM</span>
-											</a>
-											<a class="timing" href="#">
-												<span>10:00</span> <span>AM</span>
-											</a>
-											<a class="timing" href="#">
-												<span>11:00</span> <span>AM</span>
-											</a>
-										</li>
-										<li>
-											<a class="timing" href="#">
-												<span>9:00</span> <span>AM</span>
-											</a>
-											<a class="timing" href="#">
-												<span>10:00</span> <span>AM</span>
-											</a>
-											<a class="timing" href="#">
-												<span>11:00</span> <span>AM</span>
-											</a>
-										</li>
-										<li>
-											<a class="timing" href="#">
-												<span>9:00</span> <span>AM</span>
-											</a>
-											<a class="timing" href="#">
-												<span>10:00</span> <span>AM</span>
-											</a>
-											<a class="timing" href="#">
-												<span>11:00</span> <span>AM</span>
-											</a>
-										</li>
-										<li>
-											<a class="timing" href="#">
-												<span>9:00</span> <span>AM</span>
-											</a>
-											<a class="timing" href="#">
-												<span>10:00</span> <span>AM</span>
-											</a>
-											<a class="timing" href="#">
-												<span>11:00</span> <span>AM</span>
-											</a>
-										</li>
-										<li>
-											<a class="timing" href="#">
-												<span>9:00</span> <span>AM</span>
-											</a>
-											<a class="timing selected" href="#">
-												<span>10:00</span> <span>AM</span>
-											</a>
-											<a class="timing" href="#">
-												<span>11:00</span> <span>AM</span>
-											</a>
-										</li>
-										<li>
-											<a class="timing" href="#">
-												<span>9:00</span> <span>AM</span>
-											</a>
-											<a class="timing" href="#">
-												<span>10:00</span> <span>AM</span>
-											</a>
-											<a class="timing" href="#">
-												<span>11:00</span> <span>AM</span>
-											</a>
-										</li>
-										<li>
-											<a class="timing" href="#">
-												<span>9:00</span> <span>AM</span>
-											</a>
-											<a class="timing" href="#">
-												<span>10:00</span> <span>AM</span>
-											</a>
-											<a class="timing" href="#">
-												<span>11:00</span> <span>AM</span>
-											</a>
-										</li>
+									<ul id="time-list" class="clearfix no-bullets">
+										<!-- 這裡會動態生成時間區段 -->
 									</ul>
 								</div>
-
-
-
-
-
 							</div>
-							<!-- /Schedule Header -->
-
-
-
-
-
-							<!-- Schedule Content -->
-
-							<!-- /Schedule Content -->
-
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
-
 	</div>
+
+</div>
 
 </div>
 <!-- /Page Content -->
 @endsection
 @section('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize
-    initializeTimeSlots();
-    initializeTabClicks();
-    initializeSaveChanges();
+	let timingElements = {}; // 用於存儲每個時段對應的 DOM 元素
 
-    function initializeTimeSlots() {
-			console.log("myFunction is initializeTimeSlots", new Date());
+	document.addEventListener('DOMContentLoaded', function() {
+		let needToUpdate = true;
+		let eventListenerAdded = false;
+		// 初始化基础设置和时间段
+		basicInitialization();
+		// 初始化选项卡点击事件
+		initializeTabClicks();
+		// 初始化保存更改按钮点击事件
+		initializeSaveChanges();
 
-        createTimeOptionsForInitialSlot();
-        document.getElementById('addSlot').addEventListener('click', addNewTimeSlot);
-        document.getElementById('timeSlots').addEventListener('click', removeTimeSlot);
-    }
+		// 从服务器获取并比较时间表
+		fetchAndCompareSchedules();
+		// 生成接下来的七天的日期
+		generateNextSevenDays();
 
-    function createTimeOptionsForInitialSlot() {
-			console.log("myFunction is createTimeOptionsForInitialSlot", new Date());
 
-        const initialTimeSlot = document.querySelector('.timeSlot');
-        createTimeOptions(initialTimeSlot.querySelector('.startTime'));
-        createTimeOptions(initialTimeSlot.querySelector('.endTime'));
-    }
 
-    function createTimeOptions(element) {
-			console.log("myFunction is createTimeOptions", new Date());
+		function createTimingElement(hour, minute) {
+			const aElement = document.createElement("a");
+			aElement.classList.add("timing");
+			aElement.href = "#";
 
-        for (let i = 0; i < 24; i++) {
-            for (let j = 0; j < 60; j += 30) {
-                const option = new Option(`${String(i).padStart(2, '0')}:${String(j).padStart(2, '0')}`);
-                element.add(option);
-            }
-        }
-    }
+			const spanElement = document.createElement("span");
+			const timeStart = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+			const timeEndHour = minute + 25 >= 60 ? hour + 1 : hour;
+			const timeEndMinute = (minute + 25) % 60;
+			const timeEnd = `${String(timeEndHour).padStart(2, '0')}:${String(timeEndMinute).padStart(2, '0')}`;
 
-    function addNewTimeSlot() {
-			console.log("myFunction is addNewTimeSlot", new Date());
+			spanElement.textContent = `${timeStart} - ${timeEnd}`;
+			aElement.appendChild(spanElement);
 
-        const initialTimeSlot = document.querySelector('.timeSlot');
-        const newTimeSlot = initialTimeSlot.cloneNode(true);
-        createTimeOptions(newTimeSlot.querySelector('.startTime'));
-        createTimeOptions(newTimeSlot.querySelector('.endTime'));
-        document.getElementById('timeSlots').appendChild(newTimeSlot);
-    }
+			return aElement;
+		}
 
-    function removeTimeSlot(e) {
-			console.log("myFunction is removeTimeSlot", new Date());
 
-        if (e.target.classList.contains('removeSlot')) {
-            e.target.closest('.timeSlot').remove();
-        }
-    }
 
-    function initializeTabClicks() {
-			console.log("myFunction is initializeTabClicks", new Date());
 
-        const activeDays = [];
-        const activeCourses = [];
-        document.querySelectorAll('.nav-link').forEach(tab => {
-            tab.addEventListener('click', function(e) {
-                e.preventDefault();
-                toggleTab(this, this.getAttribute('data-tab-type') === 'day' ? activeDays : activeCourses);
-            });
-        });
-    }
 
-    function toggleTab(tab, activeArray) {
-			console.log("myFunction is toggleTab", new Date());
 
-        const isActive = tab.getAttribute('data-active') === 'true';
-        const tabValue = tab.textContent.trim();
-        tab.classList.toggle('active');
-        tab.setAttribute('data-active', String(!isActive));
-        const index = activeArray.indexOf(tabValue);
-        if (index > -1) {
-            activeArray.splice(index, 1);
-        } else {
-            activeArray.push(tabValue);
-        }
-    }
 
-    function initializeSaveChanges() {
-			console.log("This script is loaded.");
+		// 基础初始化
+		function basicInitialization() {
+			setCurrentDateAndDay();
 
-        document.getElementById('saveChanges').addEventListener('click', function() {
-            const timeSlots = Array.from(document.querySelectorAll('.timeSlot')).map(slot => ({
-                start_time: slot.querySelector('.startTime').value,
-                end_time: slot.querySelector('.endTime').value,
-                day_of_week: getActiveDays()
-            }));
-            saveChanges(timeSlots, getActiveDays(), getSelectedCourses());
-        });
-    }
+			// 定義當前的開始日期為今天
+			let currentStartDate = new Date();
+			const weeklyParentElement = document.querySelector(".time-slot");
+			generateNextSevenDays(currentStartDate);
 
-    function getActiveDays() {
-        return getActiveTabValues('.nav-link[data-tab-type="day"]');
-    }
 
-    function getSelectedCourses() {
-						console.log("myFunction is getSelectedCourses", new Date());
+			// 监听左右箭头点击事件
+			setupWeekNavigation(currentStartDate, generateNextSevenDays);
+		}
 
-        return getActiveTabValues('.nav-link[data-tab-type="course"]');
-    }
 
-    function getActiveTabValues(selector) {
-			console.log("myFunction is getActiveTabValues", new Date());
-        return Array.from(document.querySelectorAll(selector))
-            .filter(tab => tab.getAttribute('data-active') === 'true')
-            .map(tab => tab.getAttribute('data-course-id') || tab.textContent.trim());
-    }
+		// 设置周导航
+		function setupWeekNavigation(currentStartDate, callback) {
+			document.getElementById('prevWeek').addEventListener('click', function() {
+				// 添加條件以防止導航到今天以前的日期
+				if (moment(currentStartDate).isAfter(moment(), 'day')) {
+					moveDateByDays(currentStartDate, -7);
+					needToUpdate = true; // 設置為 true 以觸發更新
+					if (needToUpdate) {
+						fetchAndCompareSchedules();
+						needToUpdate = false; // 重設標誌
+					}
+					console.log("Updated currentStartDate:", currentStartDate);
+					callback(currentStartDate);
+					updateTimings(currentStartDate); // 更新 time-slot 和 time-list
+					fetchAndCompareSchedules(); // 重新获取和比较时间表
+				}
+			});
 
-    function saveChanges(timeSlots, activeDays, selectedCourses) {
-			console.log("myFunction is saveChanges", new Date());
-        fetch('/schedule-timings', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            },
-            body: JSON.stringify({ timeSlots, activeDays, courseIds: selectedCourses })
-        })
-        .then(response => response.json())
-        .then(data => console.log('Success:', data))
-        .catch(error => console.error('Error:', error));
-				$('#edit_time_slot').modal('hide');
-    }
-});
+			document.getElementById('nextWeek').addEventListener('click', function() {
+				moveDateByDays(currentStartDate, 7);
+				needToUpdate = true; // 設置為 true 以觸發更新
+				if (needToUpdate) {
+					fetchAndCompareSchedules();
+					needToUpdate = false; // 重設標誌
+				}
+				console.log("Updated currentStartDate:", currentStartDate);
+				callback(currentStartDate);
+				updateTimings(currentStartDate); // 更新 time-slot 和 time-list
+				fetchAndCompareSchedules(); // 重新获取和比较时间表
+			});
+		}
+
+
+		// 新增一個函數來更新 time-slot 和 time-list
+		function updateTimings(startDate) {
+			const timeListElement = document.querySelector("#time-list"); // 假設這是你的 time-list 的父元素
+
+			// 清空目前的 time-list
+			timeListElement.innerHTML = '';
+
+			// 這裡重新生成 time-list，並為每個項目添加新的 data-date
+			// ...（這取決於你具體的需求和 generateDailyTimings 函數的實現）
+		}
+
+
+		// 移动日期
+		function moveDateByDays(date, days) {
+			date.setDate(date.getDate() + days);
+		}
+
+		// 设置当前日期和天
+		function setCurrentDateAndDay() {
+			const dateElement = document.querySelector('.mb-1'); // h4 元素
+			const dayElement = document.querySelector('#current-day'); // p 元素
+
+			const now = new Date();
+			const options = {
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric'
+			};
+			const formattedDate = now.toLocaleDateString('en-US', options);
+			const formattedDay = now.toLocaleDateString('en-US', {
+				weekday: 'long'
+			});
+
+			dateElement.textContent = formattedDate;
+			dayElement.textContent = formattedDay;
+		}
+
+		// 生成接下来的七天
+		function generateNextSevenDays(start = new Date()) {
+			const ulElement = document.querySelector('.day-slot ul');
+
+			// 如果 start 是 moment 對象，轉換為 JavaScript Date 對象
+			if (moment.isMoment(start)) {
+				start = start.toDate();
+			}
+
+			const now = new Date(start);
+
+			// 移除現有的 li 元素（如果有的話）
+			ulElement.innerHTML = '';
+
+			for (let i = 0; i < 7; i++) {
+				const liElement = document.createElement('li');
+				const spanElement1 = document.createElement('span');
+				const spanElement2 = document.createElement('span');
+				const smallElement = document.createElement('small');
+
+				spanElement1.textContent = now.toLocaleDateString('en-US', {
+					weekday: 'short'
+				});
+				spanElement2.textContent = `${now.getDate()} ${now.toLocaleDateString('en-US', { month: 'short' })} `;
+				smallElement.textContent = now.getFullYear();
+				spanElement2.appendChild(smallElement);
+
+				liElement.appendChild(spanElement1);
+				liElement.appendChild(spanElement2);
+
+				ulElement.appendChild(liElement);
+
+				// 檢查是否為今天的日期，根據結果添加或移除相應樣式
+				const currentDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+				const today = new Date();
+
+				if (currentDate.toDateString() === today.toDateString()) {
+					liElement.style.backgroundColor = "#1e88e5";
+					liElement.style.color = "white";
+				} else {
+					liElement.style.backgroundColor = '';
+					liElement.style.color = '';
+				}
+
+				// 增加一天
+				now.setDate(now.getDate() + 1);
+			}
+		}
+
+		// 生成周时间
+		function generateWeeklyTimings(startHour, endHour, parentElement) {
+			// 遍历每一天（从周一到周日）
+			const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+			days.forEach(day => {
+
+				// 创建一个单一的li元素
+				const liElement = document.createElement("li");
+				liElement.style.listStyleType = "none";
+				liElement.classList.add(day);
+
+				// 遍历每个小时
+				for (let hour = startHour; hour < endHour; hour++) {
+
+					// 两个时段：一个在小时开始，另一个在半小时
+					[0, 30].forEach(minute => {
+						const aElement = document.createElement("a");
+						aElement.classList.add("timing");
+						aElement.href = "#";
+
+						const spanElement = document.createElement("span");
+						const timeStart = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+						const timeEndHour = minute + 25 >= 60 ? hour + 1 : hour;
+						const timeEndMinute = (minute + 25) % 60;
+						const timeEnd = `${String(timeEndHour).padStart(2, '0')}:${String(timeEndMinute).padStart(2, '0')}`;
+
+						spanElement.textContent = `${timeStart} - ${timeEnd}`;
+						aElement.appendChild(spanElement);
+
+						liElement.appendChild(aElement);
+					});
+				}
+
+				// 将 li 元素添加到父元素
+				parentElement.appendChild(liElement);
+			});
+		}
+
+		// 生成每日时刻表
+		function generateDailyTimings(date, dayOfWeek, startHour, endHour, parentElement) {
+			const liElement = document.createElement("li");
+			liElement.classList.add('day-timing');
+			liElement.classList.add(dayOfWeek); // 添加星期幾作為類別
+			liElement.setAttribute('data-date', date.toDateString()); // 設置日期
+
+			for (let hour = startHour; hour < endHour; hour++) {
+				[0, 30].forEach(minute => {
+					const aElement = createTimingElement(hour, minute);
+					liElement.appendChild(aElement);
+				});
+			}
+
+			parentElement.appendChild(liElement);
+
+
+			// 初始化时间选择器
+			initCalendarTiming();
+		}
+
+
+
+
+
+
+		function updateTimings(startDate) {
+			const timeListElement = document.querySelector("#time-list"); // 假設這是你的 time-list 的父元素
+
+			// 清空目前的 time-list
+			timeListElement.innerHTML = '';
+
+			// 為接下來的七天生成時刻表
+			const dates = Array.from({
+				length: 7
+			}, (_, i) => {
+				const date = new Date(startDate);
+				date.setDate(date.getDate() + i);
+				return date;
+			});
+
+			// 重新生成 time-list
+			dates.forEach(date => {
+				const dayOfWeek = date.toLocaleDateString('en-US', {
+					weekday: 'long'
+				}); // 獲取星期幾
+				generateDailyTimings(date, dayOfWeek, 8, 18, timeListElement);
+			});
+		}
+
+
+
+
+
+
+
+		// Generate the list of next seven days
+		const startDate = new Date(); // 從今天開始
+		const dates = Array.from({
+			length: 7
+		}, (_, i) => {
+			const date = new Date(startDate);
+			date.setDate(date.getDate() + i);
+			return date;
+		});
+
+		// 假設 parentElement 是你要將時刻表插入的 DOM 元素
+		const parentElement = document.getElementById('time-list');
+
+		// 為接下來的七天生成時刻表
+		dates.forEach(date => {
+			const dayOfWeek = date.toLocaleDateString('en-US', {
+				weekday: 'long'
+			}); // 獲取星期幾
+			generateDailyTimings(date, dayOfWeek, 8, 24, parentElement);
+		});
+
+
+
+
+
+
+
+		// 创建单个时刻元素
+		function createTimingElement(hour, minute) {
+			const aElement = document.createElement("a");
+			aElement.classList.add("timing");
+			aElement.href = "#";
+
+			const spanElement = document.createElement("span");
+			const timeStart = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+			const timeEndHour = minute + 25 >= 60 ? hour + 1 : hour;
+			const timeEndMinute = (minute + 25) % 60;
+			const timeEnd = `${String(timeEndHour).padStart(2, '0')}:${String(timeEndMinute).padStart(2, '0')}`;
+
+			spanElement.textContent = `${timeStart} - ${timeEnd}`;
+			aElement.appendChild(spanElement);
+
+			return aElement;
+		}
+
+
+		// 初始化时间时段
+		function initializeTimeSlots() {
+			createTimeOptionsForInitialSlot();
+			document.getElementById('addSlot').addEventListener('click', addNewTimeSlot);
+			document.getElementById('timeSlots').addEventListener('click', removeTimeSlot);
+		}
+
+		// 创建时间选项
+		function createTimeOptions(element, startHour = 0, endHour = 24, interval = 30, offset = 0) {
+			let currentTime = startHour * 60 + offset; // 轉為分鐘
+			const endTime = endHour * 60; // 轉為分鐘
+			while (currentTime < endTime) {
+				const hour = Math.floor(currentTime / 60);
+				const minute = currentTime % 60;
+				const option = new Option(`${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`);
+				element.add(option);
+				currentTime += interval;
+			}
+		}
+
+		// 为初始时间段创建时间选项
+		function createTimeOptionsForInitialSlot() {
+			const initialTimeSlot = document.querySelector('.timeSlot');
+			createTimeOptions(initialTimeSlot.querySelector('.startTime'), 8, 24, 30); // 25分鐘課程 + 5分鐘休息 = 30分鐘
+			createTimeOptions(initialTimeSlot.querySelector('.endTime'), 8, 24, 30, 25); // 從 08:25 開始
+
+		}
+		// Bootstrap 的模態框顯示事件
+		$('#edit_time_slot').on('shown.bs.modal', function() {
+			initializeTimeSlots();
+		});
+		// 添加新的时间段
+		function addNewTimeSlot() {
+			const initialTimeSlot = document.querySelector('.timeSlot');
+			const newTimeSlot = initialTimeSlot.cloneNode(true);
+			createTimeOptions(newTimeSlot.querySelector('.startTime'), 8, 24, 30);
+			createTimeOptions(newTimeSlot.querySelector('.endTime'), 8, 24, 30, 25);
+			document.getElementById('timeSlots').appendChild(newTimeSlot);
+		}
+
+		// 移除时间段
+		function removeTimeSlot(e) {
+			if (e.target.classList.contains('removeSlot')) {
+				e.target.closest('.timeSlot').remove();
+			}
+		}
+
+
+
+
+
+
+
+
+		// 初始化选项卡点击事件
+		function initializeTabClicks() {
+			const activeDays = [];
+			const activeCourses = [];
+			document.querySelectorAll('.nav-link').forEach(tab => {
+				tab.addEventListener('click', function(e) {
+					e.preventDefault();
+					toggleTab(this, this.getAttribute('data-tab-type') === 'day' ? activeDays : activeCourses);
+				});
+			});
+		}
+
+		// 切换选项卡状态
+		function toggleTab(tab, activeArray) {
+			const isActive = tab.getAttribute('data-active') === 'true';
+			const tabValue = tab.textContent.trim();
+			tab.classList.toggle('active');
+			tab.setAttribute('data-active', String(!isActive));
+			const index = activeArray.indexOf(tabValue);
+			if (index > -1) {
+				activeArray.splice(index, 1);
+			} else {
+				activeArray.push(tabValue);
+			}
+		}
+
+		// 初始化保存更改按钮点击事件
+		function initializeSaveChanges() {
+			document.getElementById('saveChanges').addEventListener('click', function() {
+				const activeDays = getActiveDays(); // 获取选定的日期
+				if (activeDays.length === 0) {
+					alert('Please select a day of the week first!');
+					return;
+				}
+				const timeSlots = Array.from(document.querySelectorAll('.timeSlot')).map(slot => ({
+					start_time: slot.querySelector('.startTime').value,
+					end_time: slot.querySelector('.endTime').value,
+					day_of_week: getActiveDays() // 需要你自己实现这个函数
+				}));
+
+				// 检查 start_time 和 end_time 是否相同或者 start_time 是否大于等于 end_time
+				for (const slot of timeSlots) {
+					if (slot.start_time === slot.end_time) {
+						alert("The start time cannot be the same as the end time."); // 或者你可以使用其他提示方式
+						return; // 提前退出函数，不进行后续的 saveChanges 调用
+					}
+
+					if (slot.start_time >= slot.end_time) {
+						alert("The start time must be less than the end time."); // 或者你可以使用其他提示方式
+						return; // 提前退出函数，不进行后续的 saveChanges 调用
+					}
+				}
+
+				saveChanges(timeSlots, getActiveDays()); // 需要你自己实现这个函数
+			});
+		}
+
+
+
+
+
+		// 获取选定的日期
+		function getActiveDays() {
+			return getActiveTabValues('.nav-link[data-tab-type="day"]');
+		}
+
+		// 获取选定选项卡的值
+		function getActiveTabValues(selector) {
+			return Array.from(document.querySelectorAll(selector))
+				.filter(tab => tab.getAttribute('data-active') === 'true')
+				.map(tab => tab.getAttribute('data-course-id') || tab.textContent.trim());
+		}
+
+		// 保存更改
+		function saveChanges(timeSlots, activeDays) {
+			fetch('/schedule-timings', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+					},
+					body: JSON.stringify({
+						timeSlots,
+						activeDays,
+						// courseIds: selectedCourses
+					})
+				})
+				.then(response => response.json())
+				.then(data => console.log('成功：', data))
+				.catch(error => console.error('错误：', error));
+			$('#edit_time_slot').modal('hide');
+		}
+
+
+		// 切换选项卡
+		function initCalendarTiming() {
+			if (eventListenerAdded) {
+				return; // 如果已經添加了事件監聽器，則直接返回
+			}
+			// 找到 .timing 元素的共同父元素
+			const parentElement = document.getElementById('time-list'); // 這個應該是你的共同父元素的 ID
+
+			// 在父元素上設置點擊事件監聽器
+			parentElement.addEventListener("click", async function(event) {
+				const target = event.target;
+
+				// 檢查被點擊的元素是否是一個 .timing 元素
+				if (target.matches(".timing, .timing *")) {
+					event.preventDefault();
+
+					// 如果被點擊的元素是 .timing 的子元素，找到它的 .timing 祖先
+					const timing = target.closest(".timing");
+
+					// 切換 'selected' 類
+					if (timing.classList.contains('selected')) {
+						timing.classList.remove('selected');
+					} else {
+						timing.classList.add('selected');
+					}
+
+					// 獲取被點擊的 .timing 元素的時間並打印到控制台
+					const selectedTime = timing.querySelector("span").textContent;
+					console.log(`Selected time is: ${selectedTime}`);
+
+					// 獲取 data-id
+					const dataId = timing.getAttribute('data-id');
+
+					// 發送請求至後端
+					try {
+						const response = await fetch('/updateschedule/' + dataId, {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+								'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
+							},
+							body: JSON.stringify({
+								status: timing.classList.contains('selected') ? 'available' : 'unavailable'
+							}),
+						});
+
+						const data = await response.json();
+						if (response.status === 200) {
+							console.log('Update successful:', data);
+						} else {
+							console.error('Update failed:', data);
+						}
+					} catch (error) {
+						console.error('Error updating schedule:', error);
+					}
+				}
+			});
+			eventListenerAdded = true; // 標記已添加事件監聽器
+
+		}
+
+
+		// 監聽第一個 li 元素
+		const ulElement = document.querySelector('.day-slot ul');
+		const firstLiElement = ulElement.querySelector('li:first-child');
+
+		// 獲取第二個 span 元素
+		const secondSpanElement = firstLiElement.querySelector('span:nth-child(2)');
+
+		// 監聽 span 元素的值變化
+		let previousDate = secondSpanElement.textContent; // 保存之前的日期
+
+		function checkDateChange() {
+			const currentDate = secondSpanElement.textContent;
+
+			// 檢查日期是否變化
+			if (currentDate === previousDate) {
+				// 日期沒有變化，可以保持原樣式
+				firstLiElement.style.backgroundColor = '';
+				firstLiElement.style.color = '';
+			} else {
+				// 日期變化了，設定新樣式
+				const currentSpanDate = new Date().toLocaleDateString('en-US', {
+					month: 'short'
+				}) + ' ' + new Date().getDate();
+				if (currentDate === currentSpanDate) {
+					firstLiElement.style.backgroundColor = "#1e88e5";
+					firstLiElement.style.color = "white";
+				} else {
+					firstLiElement.style.backgroundColor = '';
+					firstLiElement.style.color = '';
+				}
+			}
+
+			// 更新之前的日期
+			previousDate = currentDate;
+		}
+
+		// 監聽 span 元素的值變化
+		setInterval(checkDateChange, 1000); // 每秒檢查一次
+
+
+
+
+
+
+
+
+
+		// 定義兩個變量來保存當前的開始日期和結束日期
+		let currentStart = moment().subtract(6, 'days'); // 初始開始日期
+		let currentEnd = moment(); // 初始結束日期
+
+		// 函數：初始化日期選擇器
+		// function initializeBookingRangePicker() {
+		//     if ($('.bookingrange').length > 0) {
+		//         let today = moment();
+
+		//         function booking_range(start, end) {
+		//             $('.bookingrange span').html(start.format('MMMM D, YYYY'));
+		//         }
+
+		//         $('.bookingrange').daterangepicker({
+		//             startDate: today,
+		//             endDate: today,
+		//             ranges: {
+		//                 'Today': [today, today] // 只保留 "Today"
+		//             },
+		//             minDate: today // 設置最小日期為今天
+		//         }, booking_range);
+
+		//         booking_range(today, today);
+
+		//         // Special handler for the "Today" button
+		//         $(document).on('click', '.daterangepicker .ranges li[data-range-key="Today"]', function() {
+		//             $('.bookingrange').data('daterangepicker').setStartDate(today);
+		//             $('.bookingrange').data('daterangepicker').setEndDate(today);
+		//             booking_range(today, today); // Update the span content
+		//         });
+		//     }
+		// }
+
+		// 調用這個函數以初始化日期選擇器
+		// initializeBookingRangePicker();
+
+
+		// 函數：向前移動7天
+		function moveBackwardSevenDays() {
+			currentStart.subtract(7, 'days');
+			currentEnd.subtract(7, 'days');
+			$('.bookingrange').data('daterangepicker').setStartDate(currentStart);
+			$('.bookingrange').data('daterangepicker').setEndDate(currentEnd);
+		}
+
+		// 函數：向後移動7天
+		function moveForwardSevenDays() {
+			currentStart.add(7, 'days');
+			currentEnd.add(7, 'days');
+			$('.bookingrange').data('daterangepicker').setStartDate(currentStart);
+			$('.bookingrange').data('daterangepicker').setEndDate(currentEnd);
+		}
+
+
+
+
+
+		// 格式化時間，只保留時和分
+		function formatTime(time) {
+			const parts = time.split(':');
+			return `${parts[0]}:${parts[1]}`;
+		}
+
+		// 從後端獲取時間表並進行比對
+		async function fetchAndCompareSchedules() {
+			console.log("fetchAndCompareSchedules was called.");
+			try {
+				// 從後端獲取資料
+				const response = await fetch('/getschedule');
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+				const schedules = await response.json();
+
+				// 創建查找表
+				const lookup = {};
+
+				// 獲取前端HTML中的day和time list
+				const dayList = document.querySelectorAll('.day-timing');
+
+				// 填充查找表
+				dayList.forEach(dayElement => {
+					const frontendDate = new Date(dayElement.getAttribute('data-date')).toLocaleDateString();
+					const timeElements = dayElement.querySelectorAll('.timing');
+					timeElements.forEach(timeElement => {
+						const timeRange = timeElement.textContent.trim().split(' - ');
+						const frontendStartTime = formatTime(timeRange[0]);
+						const frontendEndTime = formatTime(timeRange[1]);
+						const key = `${frontendDate}-${frontendStartTime}-${frontendEndTime}`;
+						lookup[key] = timeElement;
+					});
+				});
+
+				// 進行比對
+				schedules.forEach(schedule => {
+					const backendDate = new Date(schedule.schedule_date).toLocaleDateString();
+					const backendStartTime = formatTime(schedule.start_time);
+					const backendEndTime = formatTime(schedule.end_time);
+					const key = `${backendDate}-${backendStartTime}-${backendEndTime}`;
+
+					const matchingElement = lookup[key];
+					if (matchingElement) {
+						matchingElement.setAttribute('data-id', schedule.id); // 無論如何都設置 data-id
+						if (schedule.status === 'available') {
+							matchingElement.classList.add('selected');
+						}
+					} else {
+						console.log('No match');
+					}
+				});
+			} catch (error) {
+				console.error('Error fetching or processing data:', error);
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// 更新資料庫狀態並重新比對
+	function updateSta3tus(id, newStatus) {
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	});
 </script>
 @endsection

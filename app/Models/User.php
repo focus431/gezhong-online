@@ -7,12 +7,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\ClassSchedule;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+   
     /**
      * The attributes that are mass assignable.
      *
@@ -74,6 +75,12 @@ public function getAvatarPathAttribute()
     return $this->attributes['avatar_path'] ?? 'default-avatar.jpg';
 }
 
+
+
+public function classSchedules()
+{
+    return $this->hasMany(ClassSchedule::class);
+}
 
  
 

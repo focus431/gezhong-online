@@ -137,6 +137,8 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
+			
+
 				<div class="modal-body">
 					<form>
 						<div class="hours-info">
@@ -255,15 +257,6 @@
 						</div>
 					</form>
 				</div>
-				
-
-
-
-
-
-
-
-
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
 					<button type="button" class="btn btn-primary submit-btn" id="saveChanges">保存更改</button>

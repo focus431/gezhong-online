@@ -21,14 +21,17 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\SearchMentorController;  // 確保你引入了MentorController
 use App\Http\Controllers\ScheduleController;  // 用您實際的控制器名稱替換 "YourController"
 
-
-
+//Mentor行事曆
 Route::get('/schedule-timings', [ScheduleController::class, 'showSchedule'])->name('schedule-timings');
-
-// Route::get('/schedule-timings', function () {
-//     return view('schedule-timings');
-// })->name('schedule-timings');
 Route::post('/schedule-timings', [ScheduleController::class, 'saveSchedule'])->name('save-schedule');
+Route::middleware(['auth'])->group(function () {
+Route::get('/getschedule', [ScheduleController::class, 'getScheduleJson']);});
+
+//更新行事曆的狀態
+Route::post('/updateschedule/{id}', [ScheduleController::class, 'updateStatus']);
+
+
+
 
 
 // 當訪問/search時，調用MentorController的index方法
