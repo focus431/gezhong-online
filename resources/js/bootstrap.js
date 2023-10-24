@@ -12,6 +12,31 @@ window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+
+
+
+import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
+
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: '347caaa07c6ff8be4a5d',
+    wsHost: window.location.hostname,
+    wsPort: 6001,
+    forceTLS: false,
+    disableStats: true,
+    cluster: 'ap3',  // 注意這一行
+});
+
+
+
+window.Echo.connector.pusher.connection.bind('connected', function() {
+    console.log('Successfully connected to Pusher!');
+});
+
+
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

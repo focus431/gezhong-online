@@ -10,13 +10,14 @@ class ClassSchedule extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-       
+        'user_id',      
         'schedule_date',
         'day_of_week',
         'start_time',
         'end_time',
         'is_recurring',
+        'status',
+        'mentee_id',
     ];
 
     public function course()

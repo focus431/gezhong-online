@@ -1479,6 +1479,10 @@ readers do not read off random characters that represent icons */
 .fa-eye:before {
   content: "\f06e"; }
 
+  .fab.fa-google:before {
+    content: "\f1a0";  
+}
+
 .fa-eye-dropper:before {
   content: "\f1fb"; }
 

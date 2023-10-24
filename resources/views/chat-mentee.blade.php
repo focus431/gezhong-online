@@ -5,7 +5,7 @@
 			<div class="content">
 				<div class="container-fluid">
 					<div class="settings-back mb-3">
-						<a href="dashboard">
+				<a href="dashboard-mentee">
 							<i class="fas fa-long-arrow-alt-left"></i> <span>Settings</span>
 						</a>
 					</div>

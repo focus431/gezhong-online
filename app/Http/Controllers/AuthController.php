@@ -17,9 +17,21 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest', ['except' => ['logout', 'showProfileSettingsMentor', 'showProfileSettingsMentee']]);
+        $this->middleware('guest', ['except' => ['logout', 'showProfileSettingsMentor', 'showProfileSettingsMentee','index']]);
     }
 
+    public function index($userId = null) {
+        // 如果提供了 userId，則從數據庫中獲取相應的數據
+        if ($userId) {
+            $schedule = User::where('id', $userId)->first();
+            Log::info('Schedule:', ['schedule' => $schedule]);
+            return view('profile', ['schedule' => $schedule]);
+        }
+        
+        // 如果沒有提供 userId，則執行原來的邏輯
+        // ...
+    }
+    
 
     // 顯示登錄表單
     public function showLoginForm()
@@ -66,18 +78,22 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
+            'google_meet_code' => 'nullable',
         ]);
 
         $user = new User();
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->role = 'mentor';
+        $user->google_meet_code = $request->input('google_meet_code');
+
         // 生成激活碼
         $activationCode = Str::random(60);
         $user->activation_code = $activationCode;
-
-        // 保存用戶和激活碼
+        Log::info('Google Meet Code before save: ' . $request->input('google_meet_code'));
         $user->save();
+        Log::info('Google Meet Code after save: ' . $user->google_meet_code);
+
 
         // 發送激活郵件
         Mail::to($user->email)->send(new ActivationEmail($activationCode));
@@ -123,14 +139,14 @@ class AuthController extends Controller
 
 
 
-    public function showMentorProfile()
-    {
-        // ...您的邏輯
-        return view('profile-settings-mentor');
-    }
+    // public function showMentorProfile()
+    // {
+    //     // ...您的邏輯
+    //     return view('profile-settings-mentor');
+    // }
 
 
-
+   
 
 
     // 顯示 Mentor 設定頁面
@@ -140,7 +156,7 @@ class AuthController extends Controller
         if ($user->role !== 'mentor') {
             return redirect('login')->with('message', '您不是 mentor，不能訪問這個頁面！');
         }
-        return view('profile-settings-mentor', compact('user'));
+        return view('profile-settings-mentor');
     }
 
     // 顯示 Mentee 設定頁面
@@ -150,8 +166,9 @@ class AuthController extends Controller
         if ($user->role !== 'mentee') {
             return redirect('login')->with('message', '您不是 mentee，不能訪問這個頁面！');
         }
-        return view('profile-settings-mentee', compact('user'));
+        return view('profile-settings-mentee');
     }
+
 
 
 
@@ -162,7 +179,6 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect('/index');
-
     }
 
 
@@ -217,6 +233,10 @@ class AuthController extends Controller
             'state' => $request->state,
             'zip_code' => $request->zip_code,
             'country' => $request->country,
+            'google_meet_code' => $request->google_meet_code,
+            'about_me' => $request->about_me,
+            'education_background' => $request->education_background,
+            'youtube_link' => $request->youtube_link,
             // ... 其他需要更新的字段
         ];
 

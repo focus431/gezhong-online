@@ -20,6 +20,18 @@ use App\Http\Controllers\Auth\ActivationController;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\SearchMentorController;  // 確保你引入了MentorController
 use App\Http\Controllers\ScheduleController;  // 用您實際的控制器名稱替換 "YourController"
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\MenteebookingController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ClassScheduleController;
+
+
+//顯示Mentor的自我介紹
+Route::get('/profile/{userId?}', [AuthController::class, 'index'])->name('profile');
+
+
+Route::get('/mentor_bookings', [MenteebookingController::class, 'showMentorBookings'])->name('mentor.bookings');
 
 //Mentor行事曆
 Route::get('/schedule-timings', [ScheduleController::class, 'showSchedule'])->name('schedule-timings');
@@ -28,23 +40,44 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/getschedule', [ScheduleController::class, 'getScheduleJson']);});
 
 //更新行事曆的狀態
-Route::post('/updateschedule/{id}', [ScheduleController::class, 'updateStatus']);
+Route::post('/handle-schedule', [ScheduleController::class, 'handleSchedule']);
+
+
+
+//學生預約表
+Route::get('/booking/{encryptedUserId}', [BookingController::class, 'show'])->name('booking')->middleware('auth');
+Route::get('/get-class-schedule/{mentorId}', [BookingController::class, 'getClassSchedule'])->middleware('auth');;
+Route::post('/update-booking-status', [BookingController::class, 'updateBookingStatus'])->middleware('auth');;
+Route::post('/batch-update-booking-status', [BookingController::class, 'batchUpdate'])->middleware('auth');;
 
 
 
 
+//Mentee預約名單
+Route::get('/getBookingsForMentee', [ClassScheduleController::class, 'getBookingsForMentee']);
+Route::get('/getBookingsForMentor', [ClassScheduleController::class, 'getBookingsForMentor']);
 
-// 當訪問/search時，調用MentorController的index方法
-Route::get('/search', [SearchMentorController::class, 'index']);  
+
+
+// 聊天室
+Route::get('/chat', [ChatController::class, 'chatView'])->name('chatView')->middleware('auth');
+Route::post('/api/sendMessage', [ChatController::class, 'sendMessage'])->name('sendMessage')->middleware('auth');
+Route::get('/api/getMessages', [ChatController::class, 'getMessages'])->name('getMessages')->middleware('auth');
+Route::get('/api/getUserName', [ChatController::class, 'getUserName'])->middleware('auth');
+
+// 當訪問/search時，調用SearchMentorController的index方法
+Route::get('/search', [SearchMentorController::class, 'index'])->middleware('auth');;
 
 
 // 定義一個 GET 路由，用於發送測試郵件
 // 當用戶訪問 "/send-test-email" 時，會執行這個閉包函數
-Route::get('/send-test-email', function () {Mail::to('recipient@example.com')->send(new ActivationEmail(0));
-    
-    return 'Test email sent!';});
-    // 使用 Mail 類的 to 方法指定收件人，然後使用 send 方法發送 ActivationEmail 郵件
-    // 這裡假設 ActivationEmail 的構造函數接受一個參數，我們傳入 0 作為示例
+Route::get('/send-test-email', function () {
+    Mail::to('recipient@example.com')->send(new ActivationEmail(0));
+
+    return 'Test email sent!';
+});
+// 使用 Mail 類的 to 方法指定收件人，然後使用 send 方法發送 ActivationEmail 郵件
+// 這裡假設 ActivationEmail 的構造函數接受一個參數，我們傳入 0 作為示例
 
 // --------------------------------------------------------------------------
 
@@ -88,7 +121,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/logout', [AuthController::class, 'logout']);
 
 
-// //激活碼
+//激活碼
 // Route::get('activate/{code}', 'Auth\ActivationController@activate');
 
 //logviewer
@@ -96,8 +129,10 @@ Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 
 
-
-
+//Mentor_Bookings
+Route::get('/bookings_mentor', function () {
+    return view('bookings_mentor');
+})->name('bookings_mentor');
 
 
 
@@ -106,26 +141,24 @@ Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 
 Route::get('/', function () {
-        return view('index');
-    })->name('pagee');
-    
-    Route::get('/home', function () {
-        return view('index');
-    })->name('pagee');
+    return view('index');
+})->name('pagee');
+
+Route::get('/home', function () {
+    return view('index');
+})->name('pagee');
 
 Route::get('/index', function () {
     return view('index');
 })->name('pagee');
 
 
-Route::get('/dashboard-mentor', function () {
-    return view('dashboard-mentor');
-})->name('dashboard-mentor');
+Route::get('/dashboard_mentor', function () {
+    return view('dashboard_mentor');
+})->name('dashboard_mentor');
 
 
-Route::get('/bookings', function () {
-    return view('bookings');
-})->name('bookings');
+
 
 
 
@@ -150,9 +183,11 @@ Route::get('/add-blog', function () {
 Route::get('/edit-blog', function () {
     return view('edit-blog');
 })->name('edit-blog');
-Route::get('/chat', function () {
-    return view('chat');
-})->name('chat');
+
+// Route::get('/chat', function () {
+//     return view('chat');
+// })->name('chat');
+
 Route::get('/invoices', function () {
     return view('invoices');
 })->name('invoices');
@@ -183,12 +218,22 @@ Route::get('/map-list', function () {
 
 
 
-Route::get('/profile', function () {
-    return view('profile');
-})->name('profile');
-Route::get('/bookings-mentee', function () {
-    return view('bookings-mentee');
-})->name('bookings-mentee');
+// Route::get('/profile', function () {
+//     return view('profile');
+// })->name('profile');
+
+
+
+
+
+
+Route::get('/bookings_mentee', function () {
+    return view('bookings_mentee');
+})->name('bookings_mentee');
+
+
+
+
 Route::get('/checkout', function () {
     return view('checkout');
 })->name('checkout');
@@ -198,9 +243,9 @@ Route::get('/booking-success', function () {
 
 
 
-Route::get('/dashboard-mentee', function () {
-    return view('dashboard-mentee');
-})->name('dashboard-mentee');
+Route::get('/dashboard_mentee', function () {
+    return view('dashboard_mentee');
+})->name('dashboard_mentee');
 
 
 Route::get('/favourites', function () {
@@ -253,9 +298,10 @@ Route::get('/blog-grid', function () {
 Route::get('/appointments', function () {
     return view('appointments');
 })->name('appointments');
-Route::get('/booking', function () {
-    return view('booking');
-})->name('booking');
+
+
+
+
 
 
 Route::get('/mentee-register', function () {
@@ -265,102 +311,102 @@ Route::get('/mentee-register', function () {
 
 
 /*****************ADMIN ROUTES*******************/
-Route::Group(['prefix' => 'admin'], function () { 
-Route::get('/index_admin', function () {
-return view('admin.index_admin');
-})->name('page');
-Route::get('/mentor', function () {
-return view('admin.mentor');
-})->name('mentor');
-Route::get('/mentee', function () {
-return view('admin.mentee');
-})->name('mentee');
-Route::get('/booking-list', function () {
-return view('admin.booking-list');
-})->name('booking-list');
-Route::get('/categories', function () {
-return view('admin.categories');
-})->name('categories');
-Route::get('/transactions-list', function () {
-return view('admin.transactions-list');
-})->name('transactions-list');
-Route::get('/settings', function () {
-return view('admin.settings');
-})->name('settings');
-Route::get('/invoice-report', function () {
-return view('admin.invoice-report');
-})->name('invoice-report');
-Route::get('/profile', function () {
-return view('admin.profile');
-})->name('profile');
-Route::get('/blog', function () {
-return view('admin.blog');
-})->name('blog');
-Route::get('/blog-details', function () {
-return view('admin.blog-details');
-})->name('blog-details');
-Route::get('/add-blog', function () {
-return view('admin.add-blog');
-})->name('add-blog');
-Route::get('/edit-blog', function () {
-return view('admin.edit-blog');
-})->name('edit-blog');
+Route::Group(['prefix' => 'admin'], function () {
+    Route::get('/index_admin', function () {
+        return view('admin.index_admin');
+    })->name('page');
+    Route::get('/mentor', function () {
+        return view('admin.mentor');
+    })->name('mentor');
+    Route::get('/mentee', function () {
+        return view('admin.mentee');
+    })->name('mentee');
+    Route::get('/booking-list', function () {
+        return view('admin.booking-list');
+    })->name('booking-list');
+    Route::get('/categories', function () {
+        return view('admin.categories');
+    })->name('categories');
+    Route::get('/transactions-list', function () {
+        return view('admin.transactions-list');
+    })->name('transactions-list');
+    Route::get('/settings', function () {
+        return view('admin.settings');
+    })->name('settings');
+    Route::get('/invoice-report', function () {
+        return view('admin.invoice-report');
+    })->name('invoice-report');
+    Route::get('/profile', function () {
+        return view('admin.profile');
+    })->name('profile');
+    Route::get('/blog', function () {
+        return view('admin.blog');
+    })->name('blog');
+    Route::get('/blog-details', function () {
+        return view('admin.blog-details');
+    })->name('blog-details');
+    Route::get('/add-blog', function () {
+        return view('admin.add-blog');
+    })->name('add-blog');
+    Route::get('/edit-blog', function () {
+        return view('admin.edit-blog');
+    })->name('edit-blog');
 
 
-Route::get('/amin-login', function () {
-return view('admin.login');
-})->name('admin-login');
+    Route::get('/amin-login', function () {
+        return view('admin.login');
+    })->name('admin-login');
 
 
 
 
-Route::get('/register', function () {
-return view('admin.register');
-})->name('register');
-Route::get('/forgot-password', function () {
-return view('admin.forgot-password');
-})->name('forgot-password');
-Route::get('/lock-screen', function () {
-return view('admin.lock-screen');
-})->name('lock-screen');
-Route::get('/error-404', function () {
-return view('admin.error-404');
-})->name('error-404');
-Route::get('/error-500', function () {
-return view('admin.error-500');
-})->name('error-500');
-Route::get('/blank-page', function () {
-return view('admin.blank-page');
-})->name('blank-page');
-Route::get('/components', function () {
-return view('admin.components');
-})->name('components');
-Route::get('/form-basic-inputs', function () {
-return view('admin.form-basic-inputs');
-})->name('form-basic-inputs');
-Route::get('/form-input-groups', function () {
-return view('admin.form-input-groups');
-})->name('form-input-groups');
-Route::get('/form-horizontal', function () {
-return view('admin.form-horizontal');
-})->name('form-horizontal');
-Route::get('/form-vertical', function () {
-return view('admin.form-vertical');
-})->name('form-vertical');
-Route::get('/form-mask', function () {
-return view('admin.form-mask');
-})->name('form-mask');
-Route::get('/form-validation', function () {
-return view('admin.form-validation');
-})->name('form-validation');
-Route::get('/tables-basic', function () {
-return view('admin.tables-basic');
-})->name('tables-basic');
-Route::get('/data-tables', function () {
-return view('admin.data-tables');
-})->name('data-tables');
-Route::get('/invoice', function () {
-return view('admin.invoice');
-})->name('invoice');
+    Route::get('/register', function () {
+        return view('admin.register');
+    })->name('register');
+    Route::get('/forgot-password', function () {
+        return view('admin.forgot-password');
+    })->name('forgot-password');
+    Route::get('/lock-screen', function () {
+        return view('admin.lock-screen');
+    })->name('lock-screen');
+    Route::get('/error-404', function () {
+        return view('admin.error-404');
+    })->name('error-404');
+    Route::get('/error-500', function () {
+        return view('admin.error-500');
+    })->name('error-500');
+    Route::get('/blank-page', function () {
+        return view('admin.blank-page');
+    })->name('blank-page');
+    Route::get('/components', function () {
+        return view('admin.components');
+    })->name('components');
+    Route::get('/form-basic-inputs', function () {
+        return view('admin.form-basic-inputs');
+    })->name('form-basic-inputs');
+    Route::get('/form-input-groups', function () {
+        return view('admin.form-input-groups');
+    })->name('form-input-groups');
+    Route::get('/form-horizontal', function () {
+        return view('admin.form-horizontal');
+    })->name('form-horizontal');
+    Route::get('/form-vertical', function () {
+        return view('admin.form-vertical');
+    })->name('form-vertical');
+    Route::get('/form-mask', function () {
+        return view('admin.form-mask');
+    })->name('form-mask');
+    Route::get('/form-validation', function () {
+        return view('admin.form-validation');
+    })->name('form-validation');
+    Route::get('/tables-basic', function () {
+        return view('admin.tables-basic');
+    })->name('tables-basic');
+    Route::get('/data-tables', function () {
+        return view('admin.data-tables');
+    })->name('data-tables');
+    Route::get('/invoice', function () {
+        return view('admin.invoice');
+    })->name('invoice');
 });
 /********************ADMIN ROUTES END******************************/

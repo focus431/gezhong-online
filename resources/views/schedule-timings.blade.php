@@ -28,40 +28,7 @@
 
 				<!-- Sidebar -->
 				<div class="profile-sidebar">
-					<div class="user-widget">
-						<div class="pro-avatar">JD</div>
-						<div class="rating">
-							<i class="fas fa-star filled"></i>
-							<i class="fas fa-star filled"></i>
-							<i class="fas fa-star filled"></i>
-							<i class="fas fa-star filled"></i>
-							<i class="fas fa-star"></i>
-						</div>
-						<div class="user-info-cont">
-							<h4 class="usr-name">Jonathan Doe</h4>
-							<p class="mentor-type">English Literature (M.A)</p>
-						</div>
-					</div>
-					<div class="progress-bar-custom">
-						<h6>Complete your profiles ></h6>
-						<div class="pro-progress">
-							<div class="tooltip-toggle" tabindex="0"></div>
-							<div class="tooltip">80%</div>
-						</div>
-					</div>
-					<div class="custom-sidebar-nav">
-						<ul>
-							<li><a href="dashboard"><i class="fas fa-home"></i>Dashboard <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="bookings"><i class="fas fa-clock"></i>Bookings <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="schedule-timings" class="active"><i class="fas fa-hourglass-start"></i>Schedule Timings <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="chat"><i class="fas fa-comments"></i>Messages <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="invoices"><i class="fas fa-file-invoice"></i>Invoices <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="reviews"><i class="fas fa-eye"></i>Reviews <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="blog"><i class="fab fa-blogger-b"></i>Blog <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="profile"><i class="fas fa-user-cog"></i>Profile <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="login"><i class="fas fa-sign-out-alt"></i>Logout <span><i class="fas fa-chevron-right"></i></span></a></li>
-						</ul>
-					</div>
+					@include('layout.partials.sidebar')
 				</div>
 				<!-- /Sidebar -->
 
@@ -81,16 +48,7 @@
 
 												<!-- Schedule Header -->
 												<div class="schedule-header">
-													<!-- New 5-course-name tabs -->
-													<!-- <div class="schedule-nav course-nav">
-														<ul class="nav nav-tabs nav-justified">
-															@foreach($courses as $course)
-															<li class="nav-item">
-																<a class="nav-link" data-tab-type="course" data-active="false" data-course-id="{{ $course->id }}" href="#slot_{{ $course->name }}">{{ $course->name }}</a>
-															</li>
-															@endforeach
-														</ul>
-													</div> -->
+
 
 													<!-- Schedule Nav -->
 													<div class="schedule-nav">
@@ -119,12 +77,8 @@
 															</li>
 														</ul>
 													</div>
-
-
 												</div>
-
 											</div>
-
 										</div>
 									</div>
 								</div>
@@ -140,7 +94,6 @@
 						<div class="schedule-header">
 							<div class="row">
 								<div class="col-md-12">
-
 									<!-- Day Slot -->
 									<div class="day-slot">
 										<div class="row">
@@ -149,28 +102,33 @@
 											<div class="col-12 col-sm-4 col-md-6">
 												<h4 class="mb-1" id="current-date"></h4>
 												<p class="text-muted" id="current-day"></p>
+												<!-- @foreach ($classSchedules as $schedule)
+												<p>{{ $schedule->schedule_date}}-{{ $schedule->day_of_week }} - {{ $schedule->start_time }} to {{ $schedule->end_time }}-{{ $schedule->status}}</p>
+												@endforeach -->
 											</div>
-											<!-- @foreach ($classSchedules as $schedule)
-											<p>{{ $schedule->schedule_date}}-{{ $schedule->day_of_week }} - {{ $schedule->start_time }} to {{ $schedule->end_time }}-{{ $schedule->status}}</p>
-											@endforeach -->
-
-											<!--顯示多種行事曆模式-->
-
+											<div class="row">
+												<div class="col-md-1 d-flex justify-content-start">
+													<!-- 左箭头 -->
+													<div class="arrow-buttons">
+														<button id="prevWeek" class="btn custom-btn">←</button>
+													</div>
+												</div>
+												<div class="col-md-1 d-flex justify-content-end">
+													<!-- 右箭头 -->
+													<div class="arrow-buttons">
+														<button id="nextWeek" class="btn custom-btn">→</button>
+													</div>
+												</div>
+											</div>
 
 										</div>
-
 										<!-- Schedule Widget -->
 										<div class="card booking-schedule schedule-widget">
 											<!-- Schedule Header -->
 											<div class="schedule-header">
 												<div class="row align-items-center">
-													<div class="col-md-1">
-														<!-- Left Arrow Button -->
-														<div class="arrow-buttons">
-															<button id="prevWeek" class="btn custom-btn">←</button>
-														</div>
-													</div>
-													<div class="col-md-10">
+
+													<div class="col-md-12">
 														<!-- Day Slot -->
 														<div class="day-slot">
 															<ul id="day-list">
@@ -178,12 +136,7 @@
 															</ul>
 														</div>
 													</div>
-													<div class="col-md-1">
-														<!-- Right Arrow Button -->
-														<div class="arrow-buttons">
-															<button id="nextWeek" class="btn custom-btn">→</button>
-														</div>
-													</div>
+
 												</div>
 											</div>
 										</div>
@@ -282,7 +235,6 @@
 						fetchAndCompareSchedules();
 						needToUpdate = false; // 重設標誌
 					}
-					console.log("Updated currentStartDate:", currentStartDate);
 					callback(currentStartDate);
 					updateTimings(currentStartDate); // 更新 time-slot 和 time-list
 					fetchAndCompareSchedules(); // 重新获取和比较时间表
@@ -296,7 +248,6 @@
 					fetchAndCompareSchedules();
 					needToUpdate = false; // 重設標誌
 				}
-				console.log("Updated currentStartDate:", currentStartDate);
 				callback(currentStartDate);
 				updateTimings(currentStartDate); // 更新 time-slot 和 time-list
 				fetchAndCompareSchedules(); // 重新获取和比较时间表
@@ -679,66 +630,16 @@
 
 
 		// 切换选项卡
+
 		function initCalendarTiming() {
 			if (eventListenerAdded) {
-				return; // 如果已經添加了事件監聽器，則直接返回
+				return;
 			}
-			// 找到 .timing 元素的共同父元素
-			const parentElement = document.getElementById('time-list'); // 這個應該是你的共同父元素的 ID
-
-			// 在父元素上設置點擊事件監聽器
-			parentElement.addEventListener("click", async function(event) {
-				const target = event.target;
-
-				// 檢查被點擊的元素是否是一個 .timing 元素
-				if (target.matches(".timing, .timing *")) {
-					event.preventDefault();
-
-					// 如果被點擊的元素是 .timing 的子元素，找到它的 .timing 祖先
-					const timing = target.closest(".timing");
-
-					// 切換 'selected' 類
-					if (timing.classList.contains('selected')) {
-						timing.classList.remove('selected');
-					} else {
-						timing.classList.add('selected');
-					}
-
-					// 獲取被點擊的 .timing 元素的時間並打印到控制台
-					const selectedTime = timing.querySelector("span").textContent;
-					console.log(`Selected time is: ${selectedTime}`);
-
-					// 獲取 data-id
-					const dataId = timing.getAttribute('data-id');
-
-					// 發送請求至後端
-					try {
-						const response = await fetch('/updateschedule/' + dataId, {
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/json',
-								'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-
-							},
-							body: JSON.stringify({
-								status: timing.classList.contains('selected') ? 'available' : 'unavailable'
-							}),
-						});
-
-						const data = await response.json();
-						if (response.status === 200) {
-							console.log('Update successful:', data);
-						} else {
-							console.error('Update failed:', data);
-						}
-					} catch (error) {
-						console.error('Error updating schedule:', error);
-					}
-				}
-			});
-			eventListenerAdded = true; // 標記已添加事件監聽器
-
+			const parentElement = document.getElementById('time-list');
+			parentElement.addEventListener("click", handleSchedule);
+			eventListenerAdded = true;
 		}
+
 
 
 		// 監聽第一個 li 元素
@@ -853,78 +754,162 @@
 
 		// 從後端獲取時間表並進行比對
 		async function fetchAndCompareSchedules() {
-			console.log("fetchAndCompareSchedules was called.");
-			try {
-				// 從後端獲取資料
-				const response = await fetch('/getschedule');
-				if (!response.ok) {
-					throw new Error('Network response was not ok');
+    try {
+        // 從後端獲取資料
+        const response = await fetch('/getschedule');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const schedules = await response.json();
+
+        // 創建查找表
+        const lookup = {};
+
+        // 獲取前端HTML中的day和time list
+        const dayList = document.querySelectorAll('.day-timing');
+
+        // 填充查找表
+        dayList.forEach(dayElement => {
+            const frontendDate = new Date(dayElement.getAttribute('data-date')).toLocaleDateString();
+            const timeElements = dayElement.querySelectorAll('.timing');
+            timeElements.forEach(timeElement => {
+                const timeRange = timeElement.textContent.trim().split(' - ');
+                const frontendStartTime = formatTime(timeRange[0]);
+                const frontendEndTime = formatTime(timeRange[1]);
+                const key = `${frontendDate}-${frontendStartTime}-${frontendEndTime}`;
+                lookup[key] = timeElement;
+            });
+        });
+
+        // 進行比對
+        schedules.forEach(schedule => {
+            const backendDate = new Date(schedule.schedule_date).toLocaleDateString();
+            const backendStartTime = formatTime(schedule.start_time);
+            const backendEndTime = formatTime(schedule.end_time);
+            const key = `${backendDate}-${backendStartTime}-${backendEndTime}`;
+
+            const matchingElement = lookup[key];
+            if (matchingElement) {
+                matchingElement.setAttribute('data-id', schedule.id); // 無論如何都設置 data-id
+                if (schedule.status === 'available') {
+                    matchingElement.classList.add('selected');
+                } else if (schedule.status === 'booked') {
+                    matchingElement.classList.add('booked');
+                    matchingElement.classList.add('disabled');
+                    matchingElement.addEventListener('click', function(event) {
+                        event.preventDefault(); // 防止點選
+                        event.stopImmediatePropagation(); // 阻止其他事件處理程序
+                    });
+                }
+            } else {
+                console.log('No match');
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching or processing data:', error);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		async function handleSchedule(event) {
+			const target = event.target;
+
+			if (target.matches(".timing, .timing *")) {
+				event.preventDefault();
+				const timing = target.closest(".timing");
+
+				// 切換 'selected' 類
+				if (timing.classList.contains('selected')) {
+					timing.classList.remove('selected');
+				} else {
+					timing.classList.add('selected');
 				}
-				const schedules = await response.json();
 
-				// 創建查找表
-				const lookup = {};
+				// 獲取所需數據
+				const listItem = timing.closest('.day-timing');
+				const existingDate = listItem.getAttribute('data-date');
+				const existingDateObject = new Date(existingDate); // 创建日期对象
 
-				// 獲取前端HTML中的day和time list
-				const dayList = document.querySelectorAll('.day-timing');
+				// 获取日期的年、月、日
+				const year = existingDateObject.getFullYear();
+				const month = existingDateObject.getMonth() + 1; // 月份从 0 开始，所以要加 1
+				const day = existingDateObject.getDate();
 
-				// 填充查找表
-				dayList.forEach(dayElement => {
-					const frontendDate = new Date(dayElement.getAttribute('data-date')).toLocaleDateString();
-					const timeElements = dayElement.querySelectorAll('.timing');
-					timeElements.forEach(timeElement => {
-						const timeRange = timeElement.textContent.trim().split(' - ');
-						const frontendStartTime = formatTime(timeRange[0]);
-						const frontendEndTime = formatTime(timeRange[1]);
-						const key = `${frontendDate}-${frontendStartTime}-${frontendEndTime}`;
-						lookup[key] = timeElement;
+				// 格式化日期为 "YYYY-MM-DD" 形式
+				const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+				const dayOfWeek = listItem.className.split(' ')[1];
+				const [startTime, endTime] = timing.querySelector("span").textContent.split(' - ');
+
+
+
+
+
+				// 組成對象
+				const dataToSend = {
+					existing_date: formattedDate,
+					day_of_week: dayOfWeek,
+					start_time: startTime,
+					end_time: endTime,
+					is_recurring: 0,
+					status: timing.classList.contains('selected') ? 'available' : 'unavailable'
+				};
+
+				const url = '/handle-schedule'; // 新的整合後的路由
+				const method = 'POST';
+
+				try {
+					const response = await fetch(url, {
+						method,
+						headers: {
+							'Content-Type': 'application/json',
+							'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+						},
+						body: JSON.stringify(dataToSend),
 					});
-				});
 
-				// 進行比對
-				schedules.forEach(schedule => {
-					const backendDate = new Date(schedule.schedule_date).toLocaleDateString();
-					const backendStartTime = formatTime(schedule.start_time);
-					const backendEndTime = formatTime(schedule.end_time);
-					const key = `${backendDate}-${backendStartTime}-${backendEndTime}`;
+					const data = await response.json();
 
-					const matchingElement = lookup[key];
-					if (matchingElement) {
-						matchingElement.setAttribute('data-id', schedule.id); // 無論如何都設置 data-id
-						if (schedule.status === 'available') {
-							matchingElement.classList.add('selected');
-						}
+					if (response.status === 200) {
+						console.log('Operation successful:', data);
+						timing.setAttribute('data-id', data.id); // 更新或設置 data-id
 					} else {
-						console.log('No match');
+						console.error('Operation failed:', data);
 					}
-				});
-			} catch (error) {
-				console.error('Error fetching or processing data:', error);
+				} catch (error) {
+					console.error('Error:', error);
+				}
 			}
 		}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// 更新資料庫狀態並重新比對
-	function updateSta3tus(id, newStatus) {
-
+		function initCalendarTiming() {
+			if (eventListenerAdded) {
+				return;
+			}
+			const parentElement = document.getElementById('time-list');
+			parentElement.addEventListener("click", handleSchedule);
+			eventListenerAdded = true;
 		}
+
+
+
+
+
 
 
 

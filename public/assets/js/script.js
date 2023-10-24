@@ -73,7 +73,7 @@ Version      : 1.0
 	
 	if($('.datetimepicker').length > 0) {
 		$('.datetimepicker').datetimepicker({
-			format: 'DD/MM/YYYY',
+			format: 'YYYY-MM-DD',
 			icons: {
 				up: "fas fa-chevron-up",
 				down: "fas fa-chevron-down",

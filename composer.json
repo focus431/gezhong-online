@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "beyondcode/laravel-websockets": "^2.0@beta",
         "doctrine/dbal": "^3.7",
         "guzzlehttp/guzzle": "^7.2",
         "illuminate/mail": "*",
@@ -13,6 +14,7 @@
         "laravel/passport": "^11.9",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "pusher/pusher-php-server": "^7.2",
         "rap2hpoutre/laravel-log-viewer": "^2.3"
     },
     "require-dev": {

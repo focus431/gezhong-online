@@ -10,7 +10,7 @@
 						<!-- Footer Widget -->
 						<div class="footer-widget footer-about">
 							<div class="footer-logo">
-								<img src="assets/img/logo.png" alt="logo">
+							<img src="/assets/img/logo.png" alt="logo">
 							</div>
 							<div class="footer-about-content">
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
@@ -278,7 +278,7 @@
 						<div class="call-wrapper">
 							<div class="call-inner">
 								<div class="call-user">
-									<img alt="User Image" src="assets/img/user/user.jpg" class="call-avatar">
+								<img alt="User Image" src="/assets/img/user/user.jpg" class="call-avatar">
 									<h4>Jonathan Doe</h4>
 									<span>Connecting...</span>
 								</div>
@@ -308,7 +308,7 @@
 						<div class="call-wrapper">
 							<div class="call-inner">
 								<div class="call-user">
-									<img class="call-avatar" src="assets/img/user/user.jpg" alt="User Image">
+								<img class="call-avatar" src="/assets/img/user/user.jpg" alt="User Image">
 									<h4>Dr. Darren Elder</h4>
 									<span>Calling ...</span>
 								</div>

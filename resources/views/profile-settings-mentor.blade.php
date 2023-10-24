@@ -29,42 +29,7 @@
 
 				<!-- Sidebar -->
 				<div class="profile-sidebar">
-					<div class="user-widget">
-						<div class="pro-avatar" style="width: 150px; height: 150px; overflow: hidden;">
-							<img src="{{ asset('storage/' . ($user->avatar_path ?? 'default-avatar.jpg')) }}" alt="User Image" style="width: 100%; height: 100%; object-fit: cover;">
-						</div>
-						<div class="rating">
-							<i class="fas fa-star filled"></i>
-							<i class="fas fa-star filled"></i>
-							<i class="fas fa-star filled"></i>
-							<i class="fas fa-star filled"></i>
-							<i class="fas fa-star"></i>
-						</div>
-						<div class="user-info-cont">
-							<h4 class="usr-name">{{ $user->last_name }} {{ $user->first_name }}</h4>
-							<p class="mentor-type">{{ ucfirst($user->role) }}</p>
-						</div>
-					</div>
-					<div class="progress-bar-custom">
-						<h6>Complete your profiles ></h6>
-						<div class="pro-progress">
-							<div class="tooltip-toggle" tabindex="0"></div>
-							<div class="tooltip">80%</div>
-						</div>
-					</div>
-					<div class="custom-sidebar-nav">
-						<ul>
-							<li><a href="dashboard-mentor" class="active"><i class="fas fa-home"></i>Dashboard <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="bookings"><i class="fas fa-clock"></i>Bookings <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="schedule-timings"><i class="fas fa-hourglass-start"></i>Schedule Timings <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="chat"><i class="fas fa-comments"></i>Messages <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="invoices"><i class="fas fa-file-invoice"></i>Invoices <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="reviews"><i class="fas fa-eye"></i>Reviews <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="blog"><i class="fab fa-blogger-b"></i>Blog <span><i class="fas fa-chevron-right"></i></span></a></li>
-							<li><a href="profile-settings-mentor"><i class="fas fa-user-cog"></i>Profile <span><i class="fas fa-chevron-right"></i></span></a></li>
-						<li><a href="logout"><i class="fas fa-sign-out-alt"></i>Logout <span><i class="fas fa-chevron-right"></i></span></a></li>
-						</ul>
-					</div>
+					@include('layout.partials.sidebar')
 				</div>
 				<!-- /Sidebar -->
 
@@ -85,10 +50,6 @@
 									<div class="form-group">
 										<div class="change-avatar">
 											<div class="profile-img">
-
-
-
-
 											</div>
 											<div class="upload-img">
 												<div class="change-photo-btn">
@@ -123,11 +84,11 @@
 								</div>
 								<div class="col-12 col-md-6">
 									<div class="form-group">
-										<label>性別</label>
+										<label>Gender</label>
 										<select class="form-control select form-select" name="gender">
-											<option value="male" {{ $user->gender == 'male' ? 'selected' : '' }}>男</option>
-											<option value="female" {{ $user->gender == 'female' ? 'selected' : '' }}>女</option>
-											<option value="other" {{ $user->gender == 'other' ? 'selected' : '' }}>其他</option>
+											<option value="Male" {{ $user->gender == 'male' ? 'selected' : '' }}>男</option>
+											<option value="Female" {{ $user->gender == 'female' ? 'selected' : '' }}>女</option>
+											<option value="Other" {{ $user->gender == 'other' ? 'selected' : '' }}>其他</option>
 										</select>
 									</div>
 								</div>
@@ -148,6 +109,13 @@
 								</div>
 								<div class="col-12">
 									<div class="form-group">
+										<label>Google Meet Code</label>
+										<input type="text" name="google_meet_code" class="form-control" value="{{ $user->google_meet_code }}">
+									</div>
+								</div>
+
+								<div class="col-12">
+									<div class="form-group">
 										<label>Address</label>
 										<input type="text" name="address" class="form-control" value="{{ $user->address }}">
 									</div>
@@ -160,21 +128,34 @@
 								</div>
 								<div class="col-12 col-md-6">
 									<div class="form-group">
-										<label>State</label>
-										<input type="text" name="state" class="form-control" value="{{ $user->state }}">
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label>Zip Code</label>
-										<input type="text" name="zip_code" class="form-control" value="{{ $user->zip_code }}">
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
 										<label>Country</label>
 										<input type="text" name="country" class="form-control" value="{{ $user->country }}">
 									</div>
+								</div>
+							</div>
+							<!-- Education Background -->
+							<div class="col-12">
+								<div class="form-group">
+									<label>Education Background</label>
+									<textarea name="education_background" class="form-control">{{ $user->education_background }}</textarea>
+								</div>
+							</div>
+
+							<!-- YouTube Embed -->
+							<div class="col-12">
+								<div class="form-group">
+									<label>YouTube Link</label>
+									<input type="text" name="youtube_link" id="youtube_link" class="form-control" value="{{ $user->youtube_link }}">
+									<!-- 預覽區塊 -->
+									<div id="youtube_preview"></div>
+								</div>
+							</div>
+
+							<!-- About Me -->
+							<div class="col-12">
+								<div class="form-group">
+									<label>About Me</label>
+									<textarea id="about_me_editor" name="about_me" class="form-control">{!! e($user->about_me) !!}</textarea>
 								</div>
 							</div>
 							<div class="submit-section">
@@ -191,4 +172,90 @@
 
 </div>
 <!-- /Page Content -->
+@endsection
+@section('scripts')
+<script src="https://cdn.tiny.cloud/1/ni5bamd3fda2nr4wtw85yjukd1nvwz52cu03mggezs53ti8z/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+	var formData;
+	document.addEventListener('DOMContentLoaded', function() {
+
+		tinymce.init({
+  selector: '#about_me_editor',
+  init_instance_callback: function(editor) {
+    // 現在您可以安全地使用 editor.getContent() 或 tinymce.get('about_me_editor').getContent()
+    const editorContent = editor.getContent();
+    // ...
+  }
+});
+
+		
+		// 初始化 YouTube 預覽
+		function initializeYoutubePreview() {
+			const existingYoutubeLink = document.getElementById('youtube_link').value;
+			if (existingYoutubeLink) {
+				updateYoutubePreview(existingYoutubeLink);
+			}
+		}
+
+		// 更新 YouTube 預覽
+		function updateYoutubePreview(link) {
+			const match = link.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]+)/);
+			if (match) {
+				const embedCode = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${match[1]}" frameborder="0" allowfullscreen></iframe>`;
+				document.getElementById('youtube_preview').innerHTML = embedCode;
+			} else {
+				document.getElementById('youtube_preview').innerHTML = '';
+			}
+		}
+
+		// 監聽 YouTube 鏈接輸入框的變化
+		const youtubeLinkElement = document.getElementById('youtube_link');
+		if (youtubeLinkElement) {
+			youtubeLinkElement.addEventListener('input', function() {
+				updateYoutubePreview(this.value);
+			});
+		}
+
+		initializeYoutubePreview();
+
+		// 獲取 "Save Changes" 按鈕
+		const saveChangesBtn = document.getElementById('save-changes');
+if (saveChangesBtn) {
+    saveChangesBtn.addEventListener('click', function() {
+        // 收集表單數據
+        formData = new FormData(document.getElementById('profile-form'));
+        
+        // 獲取 TinyMCE 的內容
+        const editorContent = tinymce.get('about_me_editor').getContent();
+        
+        // 將其添加到 formData 中
+        formData.set('about_me', editorContent);
+
+        // 發送 AJAX 請求到 Laravel 後端
+        fetch('/profile-settings-mentor', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            alert('Profile updated successfully.'); // 成功提示
+        })
+        .catch((error) => {
+            console.log('Error:', error);
+            alert('An error occurred. Please try again.'); // 失敗提示
+        });
+    });
+}
+
+		console.log(formData.get('about_me'));
+
+	});
+</script>
+
+
 @endsection

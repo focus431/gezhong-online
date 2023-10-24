@@ -12,7 +12,7 @@
 								<div class="row align-items-center justify-content-center">
 									<div class="col-md-12 col-lg-6 login-right">
 										<div class="login-header">
-											<h3>Mentor Register <a href="mentor-register">Not a Mentor?</a></h3>
+										<h3>Mentor Register <a href="mentee-register">Not a Mentor?</a></h3>
 										</div>
 										
 										<!-- Register Form -->

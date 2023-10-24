@@ -31,7 +31,9 @@
 @include('layout.partials.footer')
 @endif
 @include('layout.partials.footer-scripts')
-<script src="assets/js/logout.js"></script>  
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.js') }}"></script>
 @yield('scripts')
   </body>
 </html>

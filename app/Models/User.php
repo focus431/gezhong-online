@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -13,7 +14,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-   
+
     /**
      * The attributes that are mass assignable.
      *
@@ -38,6 +39,10 @@ class User extends Authenticatable
         'avatar_path',
         'activated',
         'activation_code',
+        'google_meet_code',
+        'about_me',
+        'education_background',
+        'youtube_link',
         'created_at',
         'updated_at',
 
@@ -64,24 +69,21 @@ class User extends Authenticatable
 
 
     /**
- * 獲取用戶頭像的存儲路徑
- *
- * @return string 存儲路徑
- */
-public function getAvatarPathAttribute()
-{
-    // 如果模型中有一個 'avatar_path' 屬性，則使用它。
-    // 否則，返回預設的頭像路徑。
-    return $this->attributes['avatar_path'] ?? 'default-avatar.jpg';
-}
+     * 獲取用戶頭像的存儲路徑
+     *
+     * @return string 存儲路徑
+     */
+    public function getAvatarPathAttribute()
+    {
+        // 如果模型中有一個 'avatar_path' 屬性，則使用它。
+        // 否則，返回預設的頭像路徑。
+        return $this->attributes['avatar_path'] ?? 'default-avatar.jpg';
+    }
 
 
 
-public function classSchedules()
-{
-    return $this->hasMany(ClassSchedule::class);
-}
-
- 
-
+    public function classSchedules()
+    {
+        return $this->hasMany(ClassSchedule::class);
+    }
 }

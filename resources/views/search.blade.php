@@ -12,6 +12,7 @@
 						<li class="breadcrumb-item active" aria-current="page">Search</li>
 					</ol>
 				</nav>
+
 				<h2 class="breadcrumb-title">2245 matches found for : Mentors In Florida</h2>
 			</div>
 			<div class="col-md-4 col-12 d-md-block d-none">
@@ -39,10 +40,13 @@
 
 		<div class="row">
 			<div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
-
+				<a href="dashboard_mentee">
+					<i class="fas fa-long-arrow-alt-left"></i> <span>Back</span>
+				</a>
 				<!-- Search Filter -->
 				<div class="card search-filter">
 					<div class="card-header">
+
 						<h4 class="card-title mb-0">Search Filter</h4>
 					</div>
 					<div class="card-body">
@@ -130,24 +134,39 @@
 						<div class="mentor-widget">
 							<div class="user-info-left">
 								<div class="mentor-img">
-									<a href="{{ url('profile/' . $mentor->id) }}">
-										<img src="{{ asset('storage/' . ($mentor->avatar_path ?? 'default-avatar.jpg')) }}" class="img-fluid" alt="User Image" >
-
+									<a href="profile.html">
+										<img src="{{ asset('storage/' . $mentor->avatar_path ?? 'default-avatar.jpg') }}" width="145" alt="User Image">
 									</a>
+
 								</div>
 								<div class="user-info-cont">
-									<h4 class="usr-name"><a href="{{ url('profile/' . $mentor->id) }}">{{ $mentor->last_name }}{{ $mentor->first_name }}</a></h4>
-									
-									<p class="mentor-type">{{ $mentor->specialty }}</p>
+									<h4 class="usr-name"><a href="{{ url('profile-settings-mentor#' . $mentor->id) }}">{{ $mentor->last_name }}{{ $mentor->first_name }}</a></h4>
+									<p class="mentor-type"></p>
 									<div class="rating">
-										<!-- 這裡插入評分的HTML或Blade代碼 -->
+										<i class="fas fa-star filled"></i>
+										<i class="fas fa-star filled"></i>
+										<i class="fas fa-star filled"></i>
+										<i class="fas fa-star filled"></i>
+										<i class="fas fa-star"></i>
+										<span class="d-inline-block average-rating">(27)</span>
 									</div>
 									<div class="mentor-details">
-										<p class="user-location"><i class="fas fa-map-marker-alt"></i> {{ $mentor->location }}</p>
+										<p class="user-location"><i class="fas fa-map-marker-alt"></i> {{ $mentor->city}}, {{ $mentor->country}}</p>
 									</div>
 								</div>
 							</div>
-							<!-- 其他信息，如有需要 -->
+							<div class="user-info-right">
+								<div class="user-infos">
+									<ul>
+										<li><i class="far fa-comment"></i> 35 Feedback</li>
+										<li><i class="fas fa-map-marker-alt"></i>{{ $mentor->city}}, {{ $mentor->country}}</li>
+										<li><i class="far fa-money-bill-alt"></i> $100 - $400 <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Lorem Ipsum"></i></li>
+									</ul>
+								</div>
+								<div class="mentor-booking">
+									<a class="apt-btn" href="{{ route('booking', ['encryptedUserId' => encrypt($mentor->id)]) }}">Book Appointment</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
