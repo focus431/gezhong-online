@@ -21,7 +21,6 @@ class ClassScheduleController extends Controller
 
         // 獲取前端傳過來的 status
         $status = $request->input('status', 'booked');  // 默認為 'booked'
-        Log::info("Received status", ['status' => $status]);        // 找到匹配的用戶
         $user = User::find($loggedInUserId);
 
         // 初始化查詢構造器

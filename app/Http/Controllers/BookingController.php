@@ -48,7 +48,6 @@ class BookingController extends Controller
 
     public function updateBookingStatus(Request $request)
     {
-        Log::info('Updating booking status', $request->all());  // 新增這行來調試
         $mentorId = $request->input('mentorId');
         $scheduleDate = $request->input('scheduleDate');  // 新添加的
         $startTime = $request->input('startTime');
@@ -128,4 +127,19 @@ class BookingController extends Controller
             return response()->json(['message' => 'An error occurred'], 500);
         }
     }
+
+
+
+
+
+
+
+
+    
+    
+
+    
+
+
+
 }

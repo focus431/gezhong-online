@@ -11,27 +11,30 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Mail\ActivationEmail;
+use App\Models\Course;
+
 
 class AuthController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('guest', ['except' => ['logout', 'showProfileSettingsMentor', 'showProfileSettingsMentee','index']]);
+        $this->middleware('guest', ['except' => ['logout', 'showProfileSettingsMentor', 'showProfileSettingsMentee', 'index']]);
     }
 
-    public function index($userId = null) {
+    public function index($userId = null)
+    {
         // 如果提供了 userId，則從數據庫中獲取相應的數據
         if ($userId) {
             $schedule = User::where('id', $userId)->first();
             Log::info('Schedule:', ['schedule' => $schedule]);
             return view('profile', ['schedule' => $schedule]);
         }
-        
+
         // 如果沒有提供 userId，則執行原來的邏輯
         // ...
     }
-    
+
 
     // 顯示登錄表單
     public function showLoginForm()
@@ -139,24 +142,19 @@ class AuthController extends Controller
 
 
 
-    // public function showMentorProfile()
-    // {
-    //     // ...您的邏輯
-    //     return view('profile-settings-mentor');
-    // }
 
 
-   
 
-
-    // 顯示 Mentor 設定頁面
     public function showProfileSettingsMentor()
     {
         $user = Auth::user();
         if ($user->role !== 'mentor') {
             return redirect('login')->with('message', '您不是 mentor，不能訪問這個頁面！');
         }
-        return view('profile-settings-mentor');
+
+        $courses = Course::all();  // 獲取所有可用的課程
+
+        return view('profile-settings-mentor', ['user' => $user, 'courses' => $courses]);  // 將課程數據傳遞給視圖
     }
 
     // 顯示 Mentee 設定頁面
@@ -253,6 +251,10 @@ class AuthController extends Controller
         // 在數據庫中更新用戶記錄
         $user->update($updateData);
 
+        // 如果請求中有 'courses' 字段，則更新與課程的關聯
+        if ($request->has('courses')) {
+            $user->courses()->sync($request->input('courses'));
+        }
         // 記錄日誌：顯示已更新的數據
         Log::info('User updated with data:', $updateData);
 
@@ -262,14 +264,15 @@ class AuthController extends Controller
 
 
 
-        if ($request->hasFile('avatar')) {
-            $request->validate([
-                'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // 注意，我加了 png
-            ]);
 
-            $path = $request->file('avatar')->store('avatars', 'public');
+        // if ($request->hasFile('avatar')) {
+        //     $request->validate([
+        //         'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // 注意，我加了 png
+        //     ]);
 
-            $updateData['avatar_path'] = $path;
-        }
+        //     $path = $request->file('avatar')->store('avatars', 'public');
+
+        //     $updateData['avatar_path'] = $path;
+        // }
     }
 }

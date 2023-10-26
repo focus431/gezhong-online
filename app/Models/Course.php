@@ -18,5 +18,9 @@ class Course extends Model
     {
         return $this->hasMany(ClassSchedule::class);
     }
+    // 在 Course 模型中
+public function mentors()
+    {
+        return $this->belongsToMany('App\Models\User', 'mentor_courses', 'course_id', 'user_id');
+    }
 }
-

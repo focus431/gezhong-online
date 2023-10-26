@@ -66,7 +66,11 @@ Route::get('/api/getMessages', [ChatController::class, 'getMessages'])->name('ge
 Route::get('/api/getUserName', [ChatController::class, 'getUserName'])->middleware('auth');
 
 // 當訪問/search時，調用SearchMentorController的index方法
-Route::get('/search', [SearchMentorController::class, 'index'])->middleware('auth');;
+Route::get('/search', [SearchMentorController::class, 'index'])->name('search.index')->middleware('auth');
+Route::post('/getMentors', [SearchMentorController::class, 'getMentors'])->name('getMentors');
+
+
+
 
 
 // 定義一個 GET 路由，用於發送測試郵件

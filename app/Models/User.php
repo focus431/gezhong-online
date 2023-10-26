@@ -81,6 +81,14 @@ class User extends Authenticatable
     }
 
 
+    // 在 User 模型中
+    public function courses()
+    {
+        return $this->belongsToMany('App\Models\Course', 'mentor_courses', 'user_id', 'course_id');
+    }
+
+
+
 
     public function classSchedules()
     {

@@ -114,24 +114,46 @@
 									</div>
 								</div>
 
-								<div class="col-12">
-									<div class="form-group">
-										<label>Address</label>
-										<input type="text" name="address" class="form-control" value="{{ $user->address }}">
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label>City</label>
-										<input type="text" name="city" class="form-control" value="{{ $user->city }}">
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label>Country</label>
-										<input type="text" name="country" class="form-control" value="{{ $user->country }}">
-									</div>
-								</div>
+								<div class="col-4">
+    <div class="form-group">
+        <label>Address</label>
+        <input type="text" name="address" class="form-control" value="{{ $user->address }}">
+    </div>
+</div>
+<div class="col-4">
+    <div class="form-group">
+        <label>City</label>
+        <input type="text" name="city" class="form-control" value="{{ $user->city }}">
+    </div>
+</div>
+<div class="col-4">
+    <div class="form-group">
+        <label>Country</label>
+        <input type="text" name="country" class="form-control" value="{{ $user->country }}">
+    </div>
+</div>
+
+
+
+<div class="col-12">
+    <div class="form-group">
+        <label>Courses</label>
+        <div>
+            @foreach($courses as $course)
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="{{ $course->id }}" id="course{{ $course->id }}" name="courses[]" {{ in_array($course->id, $user->courses->pluck('id')->toArray()) ? 'checked' : '' }}>
+                    <label class="form-check-label" for="course{{ $course->id }}">
+                        {{ $course->name }}
+                    </label>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+
+
+
 							</div>
 							<!-- Education Background -->
 							<div class="col-12">
@@ -181,15 +203,15 @@
 	document.addEventListener('DOMContentLoaded', function() {
 
 		tinymce.init({
-  selector: '#about_me_editor',
-  init_instance_callback: function(editor) {
-    // 現在您可以安全地使用 editor.getContent() 或 tinymce.get('about_me_editor').getContent()
-    const editorContent = editor.getContent();
-    // ...
-  }
-});
+			selector: '#about_me_editor',
+			init_instance_callback: function(editor) {
+				// 現在您可以安全地使用 editor.getContent() 或 tinymce.get('about_me_editor').getContent()
+				const editorContent = editor.getContent();
+				// ...
+			}
+		});
 
-		
+
 		// 初始化 YouTube 預覽
 		function initializeYoutubePreview() {
 			const existingYoutubeLink = document.getElementById('youtube_link').value;
@@ -221,36 +243,36 @@
 
 		// 獲取 "Save Changes" 按鈕
 		const saveChangesBtn = document.getElementById('save-changes');
-if (saveChangesBtn) {
-    saveChangesBtn.addEventListener('click', function() {
-        // 收集表單數據
-        formData = new FormData(document.getElementById('profile-form'));
-        
-        // 獲取 TinyMCE 的內容
-        const editorContent = tinymce.get('about_me_editor').getContent();
-        
-        // 將其添加到 formData 中
-        formData.set('about_me', editorContent);
+		 if (saveChangesBtn) {
+			saveChangesBtn.addEventListener('click', function() {
+				// 收集表單數據
+				formData = new FormData(document.getElementById('profile-form'));
 
-        // 發送 AJAX 請求到 Laravel 後端
-        fetch('/profile-settings-mentor', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
-            },
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            alert('Profile updated successfully.'); // 成功提示
-        })
-        .catch((error) => {
-            console.log('Error:', error);
-            alert('An error occurred. Please try again.'); // 失敗提示
-        });
-    });
-}
+				// 獲取 TinyMCE 的內容
+				const editorContent = tinymce.get('about_me_editor').getContent();
+
+				// 將其添加到 formData 中
+				formData.set('about_me', editorContent);
+
+				// 發送 AJAX 請求到 Laravel 後端
+				fetch('/profile-settings-mentor', {
+						method: 'POST',
+						headers: {
+							'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+						},
+						body: formData
+					})
+					.then(response => response.json())
+					.then(data => {
+						console.log('Success:', data);
+						alert('Profile updated successfully.'); // 成功提示
+					})
+					.catch((error) => {
+						console.log('Error:', error);
+						alert('An error occurred. Please try again.'); // 失敗提示
+					});
+			});
+		}
 
 		console.log(formData.get('about_me'));
 

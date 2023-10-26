@@ -31,15 +31,15 @@
 </div>
 <div class="custom-sidebar-nav">
 	<ul>
-		<li><a href="dashboard_mentor" class="active"><i class="fas fa-home"></i>Dashboard <span><i class="fas fa-chevron-right"></i></span></a></li>
-		<li><a href="bookings_mentor"><i class="fas fa-clock"></i>Bookings <span><i class="fas fa-chevron-right"></i></span></a></li>
-		<li><a href="schedule-timings"><i class="fas fa-hourglass-start"></i>Schedule Timings <span><i class="fas fa-chevron-right"></i></span></a></li>
-		<!-- <li><a href="chat"><i class="fas fa-comments"></i>Messages <span><i class="fas fa-chevron-right"></i></span></a></li> -->
-		<li><a href="invoices"><i class="fas fa-file-invoice"></i>Invoices <span><i class="fas fa-chevron-right"></i></span></a></li>
-		<li><a href="reviews"><i class="fas fa-eye"></i>Reviews <span><i class="fas fa-chevron-right"></i></span></a></li>
-		<li><a href="blog"><i class="fab fa-blogger-b"></i>Blog <span><i class="fas fa-chevron-right"></i></span></a></li>
-		<li><a href="profile-settings-mentor"><i class="fas fa-user-cog"></i>Profile <span><i class="fas fa-chevron-right"></i></span></a></li>
-		<li><a href="logout"><i class="fas fa-sign-out-alt"></i>Logout <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="dashboard_mentor" class="{{ Request::is('dashboard_mentor') ? 'active' : '' }}"><i class="fas fa-home"></i>Dashboard <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="bookings_mentor" class="{{ Request::is('bookings_mentor') ? 'active' : '' }}"><i class="fas fa-clock"></i>Bookings <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="schedule-timings" class="{{ Request::is('schedule-timings') ? 'active' : '' }}"><i class="fas fa-hourglass-start"></i>Schedule Timings <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<!-- <li><a href="chat" class="{{ Request::is('chat') ? 'active' : '' }}"><i class="fas fa-comments"></i>Messages <span><i class="fas fa-chevron-right"></i></span></a></li> -->
+		<li><a href="invoices" class="{{ Request::is('invoices') ? 'active' : '' }}"><i class="fas fa-file-invoice"></i>Invoices <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="reviews" class="{{ Request::is('reviews') ? 'active' : '' }}"><i class="fas fa-eye"></i>Reviews <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="blog" class="{{ Request::is('blog') ? 'active' : '' }}"><i class="fab fa-blogger-b"></i>Blog <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="profile-settings-mentor" class="{{ Request::is('profile-settings-mentor') ? 'active' : '' }}"><i class="fas fa-user-cog"></i>Profile <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="logout" class="{{ Request::is('logout') ? 'active' : '' }}"><i class="fas fa-sign-out-alt"></i>Logout <span><i class="fas fa-chevron-right"></i></span></a></li>
 	</ul>
 </div>
 @else
@@ -71,13 +71,17 @@
 <div class="custom-sidebar-nav">
 	<ul>
 		<!-- 引入側邊欄 -->
-		<li><a href="dashboard_mentee"><i class="fas fa-home"></i>Dashboard <span><i class="fas fa-chevron-right"></i></span></a></li>
-		<li><a href="bookings_mentee"><i class="fas fa-clock"></i>My Classes <span><i class="fas fa-chevron-right"></i></span></a></li>
-		<li><a href="search"><i class="fas fa-hourglass-start"></i>Booking <span><i class="fas fa-chevron-right"></i></span></a></li>
-		<li><a href="chat"><i class="fas fa-comments"></i>Messages <span><i class="fas fa-chevron-right"></i></span></a></li>
-		<li><a href="favourites" class="active"><i class="fas fa-star"></i>Favourites <span><i class="fas fa-chevron-right"></i></span></a></li>
-		<li><a href="profile-settings-mentee"><i class="fas fa-user-cog"></i>Profile <span><i class="fas fa-chevron-right"></i></span></a></li>
-		<li><a href="logout"><i class="fas fa-sign-out-alt"></i>Logout <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="dashboard_mentee" class="{{ Request::is('dashboard_mentee') ? 'active' : '' }}"><i class="fas fa-home"></i>Dashboard <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="bookings_mentee" class="{{ Request::is('bookings_mentee') ? 'active' : '' }}"><i class="fas fa-clock"></i>My Classes <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="search" class="{{ Request::is('search') ? 'active' : '' }}"><i class="fas fa-hourglass-start"></i>Booking <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<!-- <li><a href="chat" class="{{ Request::is('chat') ? 'active' : '' }}"><i class="fas fa-comments"></i>Messages <span><i class="fas fa-chevron-right"></i></span></a></li> -->
+		<li><a href="favourites" class="{{ Request::is('favourites') ? 'active' : '' }}"><i class="fas fa-star"></i>Favourites <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="profile-settings-mentee" class="{{ Request::is('profile-settings-mentee') ? 'active' : '' }}"><i class="fas fa-user-cog"></i>Profile <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="logout" class="{{ Request::is('logout') ? 'active' : '' }}"><i class="fas fa-sign-out-alt"></i>Logout <span><i class="fas fa-chevron-right"></i></span></a></li>
+
+
+
+
 
 
 	</ul>

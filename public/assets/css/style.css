@@ -112,6 +112,17 @@ Version      : 1.0
 	border-radius: 4px;
 }
 
+/* 自定義 CSS 讓 checkbox 跟 Label 靠近一點 */
+.custom-check-label {
+	margin-left: -5px;
+}
+
+/* 自定義 CSS 讓每個 checkbox 分開一點 */
+.custom-check-box {
+	margin-right: 10px;
+}
+
+
 
 
 
