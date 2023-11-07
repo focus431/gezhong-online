@@ -576,7 +576,7 @@
 							<!-- Blog Post -->
 							<div class="blog grid-blog">
 								<div class="blog-image">
-									<a href="blog-details"><img class="img-fluid" src="assets/img/blog/blog-01.jpg" alt="Post Image"></a>
+									<a href="blog-details"><img class="img-fluid" src="/assets/img/blog/blog-01.jpg" alt="Post Image"></a>
 								</div>
 								<div class="blog-content">
 									<ul class="entry-meta meta-item">

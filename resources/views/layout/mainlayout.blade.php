@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">  <head>
     @include('layout.partials.head')
    
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -34,6 +33,8 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.js') }}"></script>
+<script src="{{ asset('js/shared-translations.js') }}"></script>
+
 @yield('scripts')
   </body>
 </html>

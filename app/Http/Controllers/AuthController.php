@@ -259,20 +259,9 @@ class AuthController extends Controller
         Log::info('User updated with data:', $updateData);
 
         // 回應：更新成功
-        return response()->json(['success' => true]);
-
-
-
-
-
-        // if ($request->hasFile('avatar')) {
-        //     $request->validate([
-        //         'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // 注意，我加了 png
-        //     ]);
-
-        //     $path = $request->file('avatar')->store('avatars', 'public');
-
-        //     $updateData['avatar_path'] = $path;
-        // }
+        return response()->json(['success' => true]);     
     }
+
+
+    
 }

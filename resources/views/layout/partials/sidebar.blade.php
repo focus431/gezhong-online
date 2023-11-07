@@ -31,7 +31,7 @@
 </div>
 <div class="custom-sidebar-nav">
 	<ul>
-		<li><a href="dashboard_mentor" class="{{ Request::is('dashboard_mentor') ? 'active' : '' }}"><i class="fas fa-home"></i>Dashboard <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="dashboard_mentor" class="{{ Request::is('dashboard_mentor') ? 'active' : '' }}"><i class="fas fa-home"></i>{{ __('dashboard') }} <span><i class="fas fa-chevron-right"></i></span></a></li>
 		<li><a href="bookings_mentor" class="{{ Request::is('bookings_mentor') ? 'active' : '' }}"><i class="fas fa-clock"></i>Bookings <span><i class="fas fa-chevron-right"></i></span></a></li>
 		<li><a href="schedule-timings" class="{{ Request::is('schedule-timings') ? 'active' : '' }}"><i class="fas fa-hourglass-start"></i>Schedule Timings <span><i class="fas fa-chevron-right"></i></span></a></li>
 		<!-- <li><a href="chat" class="{{ Request::is('chat') ? 'active' : '' }}"><i class="fas fa-comments"></i>Messages <span><i class="fas fa-chevron-right"></i></span></a></li> -->
@@ -71,11 +71,13 @@
 <div class="custom-sidebar-nav">
 	<ul>
 		<!-- 引入側邊欄 -->
-		<li><a href="dashboard_mentee" class="{{ Request::is('dashboard_mentee') ? 'active' : '' }}"><i class="fas fa-home"></i>Dashboard <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="dashboard_mentee" class="{{ Request::is('dashboard_mentee') ? 'active' : '' }}"><i class="fas fa-home"></i>{{ __('dashboard') }} <span><i class="fas fa-chevron-right"></i></span></a></li>
 		<li><a href="bookings_mentee" class="{{ Request::is('bookings_mentee') ? 'active' : '' }}"><i class="fas fa-clock"></i>My Classes <span><i class="fas fa-chevron-right"></i></span></a></li>
 		<li><a href="search" class="{{ Request::is('search') ? 'active' : '' }}"><i class="fas fa-hourglass-start"></i>Booking <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<li><a href="paymentplan" class="{{ Request::is('paymentplan') ? 'active' : '' }}"><i class="fas fa-user-cog"></i>plans <span><i class="fas fa-chevron-right"></i></span></a></li>
+
 		<!-- <li><a href="chat" class="{{ Request::is('chat') ? 'active' : '' }}"><i class="fas fa-comments"></i>Messages <span><i class="fas fa-chevron-right"></i></span></a></li> -->
-		<li><a href="favourites" class="{{ Request::is('favourites') ? 'active' : '' }}"><i class="fas fa-star"></i>Favourites <span><i class="fas fa-chevron-right"></i></span></a></li>
+		<!-- <li><a href="favourites" class="{{ Request::is('favourites') ? 'active' : '' }}"><i class="fas fa-star"></i>Favourites <span><i class="fas fa-chevron-right"></i></span></a></li> -->
 		<li><a href="profile-settings-mentee" class="{{ Request::is('profile-settings-mentee') ? 'active' : '' }}"><i class="fas fa-user-cog"></i>Profile <span><i class="fas fa-chevron-right"></i></span></a></li>
 		<li><a href="logout" class="{{ Request::is('logout') ? 'active' : '' }}"><i class="fas fa-sign-out-alt"></i>Logout <span><i class="fas fa-chevron-right"></i></span></a></li>
 

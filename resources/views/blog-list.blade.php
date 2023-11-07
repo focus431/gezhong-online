@@ -30,7 +30,7 @@
 							<!-- Blog Post -->
 							<div class="blog">
 								<div class="blog-image">
-									<a href="blog-details"><img class="img-fluid" src="assets/img/blog/blog-01.jpg" alt="Post Image"></a>
+									<a href="blog-details"><img class="img-fluid" src="/assets/img/blog/blog-01.jpg" alt="Post Image"></a>
 								</div>
 								<h3 class="blog-title"><a href="blog-details">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</a></h3>
 								<div class="blog-info clearfix">

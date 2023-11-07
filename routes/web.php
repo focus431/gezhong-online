@@ -25,7 +25,13 @@ use App\Http\Controllers\MenteebookingController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ClassScheduleController;
+use App\Http\Controllers\PaymentPlanController;
 
+
+
+//購買方案
+Route::get('/paymentplan', [PaymentPlanController::class, 'index']);
+Route::get('/checkout/{id?}', [PaymentPlanController::class, 'checkout']);
 
 //顯示Mentor的自我介紹
 Route::get('/profile/{userId?}', [AuthController::class, 'index'])->name('profile');
@@ -37,7 +43,8 @@ Route::get('/mentor_bookings', [MenteebookingController::class, 'showMentorBooki
 Route::get('/schedule-timings', [ScheduleController::class, 'showSchedule'])->name('schedule-timings');
 Route::post('/schedule-timings', [ScheduleController::class, 'saveSchedule'])->name('save-schedule');
 Route::middleware(['auth'])->group(function () {
-Route::get('/getschedule', [ScheduleController::class, 'getScheduleJson']);});
+    Route::get('/getschedule', [ScheduleController::class, 'getScheduleJson']);
+});
 
 //更新行事曆的狀態
 Route::post('/handle-schedule', [ScheduleController::class, 'handleSchedule']);
@@ -144,17 +151,18 @@ Route::get('/bookings_mentor', function () {
 
 
 
+
+
+// 當用戶訪問 '/home' 時，將會自動重定向到根路徑 '/'
+Route::redirect('/home', '/');
+// 當用戶訪問 '/index' 時，也將自動重定向到根路徑 '/'
+Route::redirect('/index', '/');
+// 定義根路徑 '/' 的 GET 請求，當訪問此路徑時，將返回 'index' 視圖
 Route::get('/', function () {
     return view('index');
-})->name('pagee');
+})->name('page'); // 給這個路由命名為 'page'，以便在應用程序的其他部分參照此路由
 
-Route::get('/home', function () {
-    return view('index');
-})->name('pagee');
 
-Route::get('/index', function () {
-    return view('index');
-})->name('pagee');
 
 
 Route::get('/dashboard_mentor', function () {
@@ -175,41 +183,44 @@ Route::get('/mentee-list', function () {
 Route::get('/profile-mentee', function () {
     return view('profile-mentee');
 })->name('profile-mentee');
-Route::get('/blog', function () {
-    return view('blog');
-})->name('blog');
-Route::get('/blog-details', function () {
-    return view('blog-details');
-})->name('blog-details');
-Route::get('/add-blog', function () {
-    return view('add-blog');
-})->name('add-blog');
-Route::get('/edit-blog', function () {
-    return view('edit-blog');
-})->name('edit-blog');
+
+
+
+// Route::get('/blog', function () {
+//     return view('blog');
+// })->name('blog');
+// Route::get('/blog-details', function () {
+//     return view('blog-details');
+// })->name('blog-details');
+// Route::get('/add-blog', function () {
+//     return view('add-blog');
+// })->name('add-blog');
+// Route::get('/edit-blog', function () {
+//     return view('edit-blog');
+// })->name('edit-blog');
 
 // Route::get('/chat', function () {
 //     return view('chat');
 // })->name('chat');
 
-Route::get('/invoices', function () {
-    return view('invoices');
-})->name('invoices');
-Route::get('/profile-settings', function () {
-    return view('profile-settings');
-})->name('profile-settings');
-Route::get('/reviews', function () {
-    return view('reviews');
-})->name('reviews');
-Route::get('/mentor-register', function () {
-    return view('mentor-register');
-})->name('mentor-register');
-Route::get('/map-grid', function () {
-    return view('map-grid');
-})->name('map-grid');
-Route::get('/map-list', function () {
-    return view('map-list');
-})->name('map-list');
+// Route::get('/invoices', function () {
+//     return view('invoices');
+// })->name('invoices');
+// Route::get('/profile-settings', function () {
+//     return view('profile-settings');
+// })->name('profile-settings');
+// Route::get('/reviews', function () {
+//     return view('reviews');
+// })->name('reviews');
+// Route::get('/mentor-register', function () {
+//     return view('mentor-register');
+// })->name('mentor-register');
+// Route::get('/map-grid', function () {
+//     return view('map-grid');
+// })->name('map-grid');
+// Route::get('/map-list', function () {
+//     return view('map-list');
+// })->name('map-list');
 
 
 
@@ -231,186 +242,243 @@ Route::get('/map-list', function () {
 
 
 
-Route::get('/bookings_mentee', function () {
-    return view('bookings_mentee');
-})->name('bookings_mentee');
+// Route::get('/bookings_mentee', function () {
+//     return view('bookings_mentee');
+// })->name('bookings_mentee');
 
 
 
 
-Route::get('/checkout', function () {
-    return view('checkout');
-})->name('checkout');
-Route::get('/booking-success', function () {
-    return view('booking-success');
-})->name('booking-success');
+// Route::get('/checkout', function () {
+//     return view('checkout');
+// })->name('checkout');
+// Route::get('/booking-success', function () {
+//     return view('booking-success');
+// })->name('booking-success');
 
 
 
-Route::get('/dashboard_mentee', function () {
-    return view('dashboard_mentee');
-})->name('dashboard_mentee');
+// Route::get('/dashboard_mentee', function () {
+//     return view('dashboard_mentee');
+// })->name('dashboard_mentee');
 
 
-Route::get('/favourites', function () {
-    return view('favourites');
-})->name('favourites');
-Route::get('/chat-mentee', function () {
-    return view('chat-mentee');
-})->name('chat-mentee');
+// Route::get('/favourites', function () {
+//     return view('favourites');
+// })->name('favourites');
+// Route::get('/chat-mentee', function () {
+//     return view('chat-mentee');
+// })->name('chat-mentee');
 
 // Route::get('/profile-settings-mentee', function () {
 //     return view('profile-settings-mentee');
 // })->name('profile-settings-mentee');
 
-Route::get('/change-password', function () {
-    return view('change-password');
-})->name('change-password');
-Route::get('/voice-call', function () {
-    return view('voice-call');
-})->name('voice-call');
-Route::get('/video-call', function () {
-    return view('video-call');
-})->name('video-call');
-Route::get('/components', function () {
-    return view('components');
-})->name('components');
-Route::get('/invoice-view', function () {
-    return view('invoice-view');
-})->name('invoice-view');
-Route::get('/blank-page', function () {
-    return view('blank-page');
-})->name('blank-page');
+// Route::get('/change-password', function () {
+//     return view('change-password');
+// })->name('change-password');
+// Route::get('/voice-call', function () {
+//     return view('voice-call');
+// })->name('voice-call');
+// Route::get('/video-call', function () {
+//     return view('video-call');
+// })->name('video-call');
+// Route::get('/components', function () {
+//     return view('components');
+// })->name('components');
+// Route::get('/invoice-view', function () {
+//     return view('invoice-view');
+// })->name('invoice-view');
+// Route::get('/blank-page', function () {
+//     return view('blank-page');
+// })->name('blank-page');
 
 // Route::get('/login', function () {
 //     return view('login');
 // })->name('login');
 
 
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
+// Route::get('/register', function () {
+//     return view('register');
+// })->name('register');
+
+
 Route::get('/forgot-password', function () {
     return view('forgot-password');
 })->name('forgot-password');
-Route::get('/blog-list', function () {
-    return view('blog-list');
-})->name('blog-list');
-Route::get('/blog-grid', function () {
-    return view('blog-grid');
-})->name('blog-grid');
-Route::get('/appointments', function () {
-    return view('appointments');
-})->name('appointments');
+
+
+
+
+// Route::get('/blog-list', function () {
+//     return view('blog-list');
+// })->name('blog-list');
+// Route::get('/blog-grid', function () {
+//     return view('blog-grid');
+// })->name('blog-grid');
+// Route::get('/appointments', function () {
+//     return view('appointments');
+// })->name('appointments');
 
 
 
 
 
 
-Route::get('/mentee-register', function () {
-    return view('mentee-register');
-})->name('mentee-register');
+// Route::get('/mentee-register', function () {
+//     return view('mentee-register');
+// })->name('mentee-register');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 /*****************ADMIN ROUTES*******************/
-Route::Group(['prefix' => 'admin'], function () {
-    Route::get('/index_admin', function () {
-        return view('admin.index_admin');
-    })->name('page');
-    Route::get('/mentor', function () {
-        return view('admin.mentor');
-    })->name('mentor');
-    Route::get('/mentee', function () {
-        return view('admin.mentee');
-    })->name('mentee');
-    Route::get('/booking-list', function () {
-        return view('admin.booking-list');
-    })->name('booking-list');
-    Route::get('/categories', function () {
-        return view('admin.categories');
-    })->name('categories');
-    Route::get('/transactions-list', function () {
-        return view('admin.transactions-list');
-    })->name('transactions-list');
-    Route::get('/settings', function () {
-        return view('admin.settings');
-    })->name('settings');
-    Route::get('/invoice-report', function () {
-        return view('admin.invoice-report');
-    })->name('invoice-report');
-    Route::get('/profile', function () {
-        return view('admin.profile');
-    })->name('profile');
-    Route::get('/blog', function () {
-        return view('admin.blog');
-    })->name('blog');
-    Route::get('/blog-details', function () {
-        return view('admin.blog-details');
-    })->name('blog-details');
-    Route::get('/add-blog', function () {
-        return view('admin.add-blog');
-    })->name('add-blog');
-    Route::get('/edit-blog', function () {
-        return view('admin.edit-blog');
-    })->name('edit-blog');
 
-
-    Route::get('/amin-login', function () {
-        return view('admin.login');
-    })->name('admin-login');
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TranslationController;
+use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\SocialAuthController;
+use App\Http\Controllers\BlogController;
 
 
 
 
-    Route::get('/register', function () {
-        return view('admin.register');
-    })->name('register');
-    Route::get('/forgot-password', function () {
-        return view('admin.forgot-password');
-    })->name('forgot-password');
-    Route::get('/lock-screen', function () {
-        return view('admin.lock-screen');
-    })->name('lock-screen');
-    Route::get('/error-404', function () {
-        return view('admin.error-404');
-    })->name('error-404');
-    Route::get('/error-500', function () {
-        return view('admin.error-500');
-    })->name('error-500');
-    Route::get('/blank-page', function () {
-        return view('admin.blank-page');
-    })->name('blank-page');
-    Route::get('/components', function () {
-        return view('admin.components');
-    })->name('components');
-    Route::get('/form-basic-inputs', function () {
-        return view('admin.form-basic-inputs');
-    })->name('form-basic-inputs');
-    Route::get('/form-input-groups', function () {
-        return view('admin.form-input-groups');
-    })->name('form-input-groups');
-    Route::get('/form-horizontal', function () {
-        return view('admin.form-horizontal');
-    })->name('form-horizontal');
-    Route::get('/form-vertical', function () {
-        return view('admin.form-vertical');
-    })->name('form-vertical');
-    Route::get('/form-mask', function () {
-        return view('admin.form-mask');
-    })->name('form-mask');
-    Route::get('/form-validation', function () {
-        return view('admin.form-validation');
-    })->name('form-validation');
-    Route::get('/tables-basic', function () {
-        return view('admin.tables-basic');
-    })->name('tables-basic');
-    Route::get('/data-tables', function () {
-        return view('admin.data-tables');
-    })->name('data-tables');
-    Route::get('/invoice', function () {
-        return view('admin.invoice');
-    })->name('invoice');
+
+
+//用臉書登入但不成功 晚一點在試
+Route::get('/redirect-to-facebook', [SocialAuthController::class, 'redirectToFacebook']);
+Route::get('/facebook/callback', [SocialAuthController::class, 'handleFacebookCallback']);
+
+
+//mentee , mentor 整合版
+Route::post('toggle-activation/{id}', [AdminController::class, 'toggleActivation']);
+//admin取得所有mentee,mentor
+Route::get('/get-users/{role}', [AdminController::class, 'getUsersByRole']);
+
+//所有課程
+Route::get('/get-class-schedules', [AdminController::class, 'getClassSchedules']);
+
+//儀表板功能 1104
+Route::get('/counts', [AdminController::class, 'countEntities']);
+// Route::get('/${role}/monthly-counts', [AdminController::class, 'getMonthlyMenteeCounts']);
+Route::get('/{role}s/monthly-counts', [AdminController::class, 'getMonthlyCounts']);
+
+
+
+//Admin 切換mentee的狀況
+Route::post('change-mentee-status/{id}', [AdminController::class, 'changeStatus']);
+//Admin 切換mentor的狀況
+Route::post('change-mentor-status/{id}', [AdminController::class, 'changeStatus']);
+
+
+
+
+
+
+
+// 添加這個路由來處理表單提交
+Route::post('/update-website', [WebsiteController::class, 'update']);
+
+// 對於不需要任何中間件的路由，Admin登入
+Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin-login');
+Route::post('/admin/ajax-login', [AdminController::class, 'ajaxLogin'])->name('ajax-login');
+// 在 routes/web.php 或 routes/api.php
+Route::get('translations', [TranslationController::class, 'index']);
+
+
+
+
+
+
+//admin註冊頁面
+Route::get('/admin/register', [AdminController::class, 'register'])->name('register');
+Route::post('/admin/register', [AdminController::class, 'register'])->name('admin.register.submit');
+Route::post('/admin/change-password', [AdminController::class, 'changePassword']);
+Route::post('/admin/update-profile', [AdminController::class, 'updateProfile']);
+
+
+
+
+//需要中間路由 Admin開頭
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], function () {
+    //Admin登出
+    Route::get('/logout', [AdminController::class, 'logout'])->name('admin-logout');
+    //Admin的簡介
+    Route::get('/profile/{id}', [AdminController::class, 'profile'])->name('adminprofile');
+    
+    
+    
+    
+    // 使用資源路由而不是單獨的路由
+    Route::resource('blog', BlogController::class)->names([
+        'index' => 'admin.blog',
+        'create' => 'admin.add-blog',
+        'store' => 'admin.add-blog',
+        'show' => 'admin.blog.show',
+        'edit' => 'admin.edit-blog',
+        'update' => 'admin.blog.update',
+        'destroy' => 'admin.blog.destroy',
+    ]);
+    
+
+
+
+
+
+
+
+
+
+
+    Route::get('/index_admin', [AdminController::class, 'indexAdmin'])->name('page');
+    Route::get('/mentor', [AdminController::class, 'mentor'])->name('mentor');
+    Route::get('/mentee', [AdminController::class, 'mentee'])->name('mentee');
+    Route::get('/booking-list', [AdminController::class, 'bookingList'])->name('booking-list');
+    Route::get('/categories', [AdminController::class, 'categories'])->name('categories');
+    Route::get('/transactions-list', [AdminController::class, 'transactionsList'])->name('transactions-list');
+    Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
+    Route::get('/invoice-report', [AdminController::class, 'invoiceReport'])->name('invoice-report');
+
+
+
+
+    // Route::get('/blog-details', [AdminController::class, 'blogDetails'])->name('blog-details');
+    // Route::get('/add-blog', [AdminController::class, 'addBlog'])->name('add-blog');
+    // Route::get('/edit-blog', [AdminController::class, 'editBlog'])->name('edit-blog');
+
+
+
+
+
+    Route::get('/forgot-password', [AdminController::class, 'forgotPassword'])->name('forgot-password');
+    Route::get('/lock-screen', [AdminController::class, 'lockScreen'])->name('lock-screen');
+    Route::get('/error-404', [AdminController::class, 'error404'])->name('error-404');
+    Route::get('/error-500', [AdminController::class, 'error500'])->name('error-500');
+    Route::get('/blank-page', [AdminController::class, 'blankPage'])->name('blank-page');
+    Route::get('/components', [AdminController::class, 'components'])->name('components');
+    Route::get('/form-basic-inputs', [AdminController::class, 'formBasicInputs'])->name('form-basic-inputs');
+    Route::get('/form-input-groups', [AdminController::class, 'formInputGroups'])->name('form-input-groups');
+    Route::get('/form-horizontal', [AdminController::class, 'formHorizontal'])->name('form-horizontal');
+    Route::get('/form-vertical', [AdminController::class, 'formVertical'])->name('form-vertical');
+    Route::get('/form-mask', [AdminController::class, 'formMask'])->name('form-mask');
+    Route::get('/form-validation', [AdminController::class, 'formValidation'])->name('form-validation');
+    Route::get('/tables-basic', [AdminController::class, 'tablesBasic'])->name('tables-basic');
+    Route::get('/data-tables', [AdminController::class, 'dataTables'])->name('data-tables');
+    Route::get('/invoice', [AdminController::class, 'invoice'])->name('invoice');
 });
+
 /********************ADMIN ROUTES END******************************/

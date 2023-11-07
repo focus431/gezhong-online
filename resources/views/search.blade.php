@@ -251,9 +251,18 @@
     const mentorListContainer = document.getElementById('mentorListContainer');
     mentorListContainer.innerHTML = '';
 
+    let rowGrid; // 用於存放每一行的 mentors
+
     mentors.forEach((mentor, index) => {
+        // 每三個 mentors 就新建一個 row
+        if (index % 4 === 0) {
+            rowGrid = document.createElement('div');
+            rowGrid.className = 'row row-grid';
+            mentorListContainer.appendChild(rowGrid);
+        }
+
         const mentorCard = createMentorCard(mentor, encryptedMentorIds[index]);
-        mentorListContainer.appendChild(mentorCard);
+        rowGrid.appendChild(mentorCard);
     });
 
     // 更新總匹配數
@@ -284,96 +293,163 @@
 
 
 
-	function createMentorCard(mentor, encryptedMentorId) {
-		// 以下代碼會根据每个 mentor 生成一個完全一樣樣式的 mentor 卡片
-		const mentorCard = document.createElement('div');
-		mentorCard.className = 'card';
-		mentorCard.id = 'mentorCard' + mentor.id;
 
-		const cardBody = document.createElement('div');
-		cardBody.className = 'card-body';
+function createMentorCard(mentor, encryptedMentorId) {
+    
 
-		const mentorWidget = document.createElement('div');
-		mentorWidget.className = 'mentor-widget';
+    // // 創建 row-grid
+    // const rowGrid = document.createElement('div');
+    // rowGrid.className = 'row row-grid';
 
-		const userInfoLeft = document.createElement('div');
-		userInfoLeft.className = 'user-info-left';
+    // 創建 col-md-6 col-lg-4 col-xl-3
+    const colDiv = document.createElement('div');
+    colDiv.className = 'col-md-3 col-lg-3 col-xl-3';
 
-		const mentorImg = document.createElement('div');
-		mentorImg.className = 'mentor-img';
+    // 創建 profile-widget
+    const profileWidget = document.createElement('div');
+    profileWidget.className = 'profile-widget';
 
-		const aTag = document.createElement('a');
-		aTag.href = 'profile.html';
+    // 創建 user-avatar
+    const userAvatar = document.createElement('div');
+    userAvatar.className = 'user-avatar';
 
-		const imgElement = document.createElement('img');
-		imgElement.src = baseUrl + '/' + (mentor.avatar_path ? mentor.avatar_path : 'default-avatar.jpg');
-		imgElement.width = 145;
-		imgElement.alt = 'User Image';
+    const avatarLink = document.createElement('a');
+    avatarLink.href = `/profile/${mentor.id}`;
 
-		aTag.appendChild(imgElement);
-		mentorImg.appendChild(aTag);
+    const avatarImg = document.createElement('img');
+    avatarImg.className = 'img-fluid';
+    avatarImg.alt = 'User Image';
+    avatarImg.src = baseUrl + '/' + (mentor.avatar_path ? mentor.avatar_path : 'default-avatar.jpg');
 
-		const userInfoCont = document.createElement('div');
-		userInfoCont.className = 'user-info-cont';
+    avatarLink.appendChild(avatarImg);
 
-		const h4Tag = document.createElement('h4');
-		h4Tag.className = 'usr-name';
-		h4Tag.innerHTML = `<a href="profile-settings-mentor#${mentor.id}">${mentor.last_name}${mentor.first_name}</a>`;
+    const favBtn = document.createElement('a');
+    favBtn.href = 'javascript:void(0)';
+    favBtn.className = 'fav-btn';
 
-		const pTag = document.createElement('p');
-		pTag.className = 'mentor-type';
+    const favIcon = document.createElement('i');
+    favIcon.className = 'far fa-bookmark';
 
-		const ratingDiv = document.createElement('div');
-		ratingDiv.className = 'rating';
-		ratingDiv.innerHTML = `
-        <i class="fas fa-star filled"></i>
-        <i class="fas fa-star filled"></i>
-        <i class="fas fa-star filled"></i>
-        <i class="fas fa-star filled"></i>
-        <i class="fas fa-star"></i>
-        <span class="d-inline-block average-rating">(27)</span>
-    `;
+    favBtn.appendChild(favIcon);
 
-		const mentorDetails = document.createElement('div');
-		mentorDetails.className = 'mentor-details';
-		mentorDetails.innerHTML = `<p class="user-location"><i class="fas fa-map-marker-alt"></i> ${mentor.city}, ${mentor.country}</p>`;
+    userAvatar.appendChild(avatarLink);
+    userAvatar.appendChild(favBtn);
 
-		userInfoCont.appendChild(h4Tag);
-		userInfoCont.appendChild(pTag);
-		userInfoCont.appendChild(ratingDiv);
-		userInfoCont.appendChild(mentorDetails);
+    // 創建 pro-content
+    const proContent = document.createElement('div');
+    proContent.className = 'pro-content';
 
-		userInfoLeft.appendChild(mentorImg);
-		userInfoLeft.appendChild(userInfoCont);
+    const h3 = document.createElement('h3');
+    h3.className = 'title';
 
-		const userInfoRight = document.createElement('div');
-		userInfoRight.className = 'user-info-right';
+    const aProfile = document.createElement('a');
+    aProfile.href = `/profile/${mentor.id}`;
+    aProfile.textContent = mentor.last_name + mentor.first_name;
 
-		const userInfos = document.createElement('div');
-		userInfos.className = 'user-infos';
-		userInfos.innerHTML = `
-        <ul>
-            <li><i class="far fa-comment"></i> 35 Feedback</li>
-            <li><i class="fas fa-map-marker-alt"></i> ${mentor.city}, ${mentor.country}</li>
-            <li><i class="far fa-money-bill-alt"></i> $100 - $400 <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Lorem Ipsum"></i></li>
-        </ul>
-    `;
+    const iVerified = document.createElement('i');
+    iVerified.className = 'fas fa-solid fa-user';
+		iVerified.style.paddingLeft = '10px';
+// 根據 mentor 的 gender 設定顏色
+if (mentor.gender === 'Male') {
+    iVerified.style.color = 'dodgerblue';  // 鮮藍色
+} else if (mentor.gender === 'Female') {
+    iVerified.style.color = 'lightcoral';  // 亮紅色
+}
 
-		const mentorBooking = document.createElement('div');
-		mentorBooking.className = 'mentor-booking';
-		mentorBooking.innerHTML = `<a class="apt-btn" href="/booking/${encryptedMentorId}">Book Appointment</a>`;
 
-		userInfoRight.appendChild(userInfos);
-		userInfoRight.appendChild(mentorBooking);
+    h3.appendChild(aProfile);
+    h3.appendChild(iVerified);
 
-		mentorWidget.appendChild(userInfoLeft);
-		mentorWidget.appendChild(userInfoRight);
+    const pSpeciality = document.createElement('p');
+    pSpeciality.className = 'speciality';
+    pSpeciality.textContent = mentor.speciality ? mentor.speciality : 'No speciality provided';
 
-		cardBody.appendChild(mentorWidget);
+    const ratingDiv = document.createElement('div');
+    ratingDiv.className = 'rating';
 
-		mentorCard.appendChild(cardBody);
+    for (let i = 0; i < 5; i++) {
+        let star = document.createElement('i');
+        star.className = 'fas fa-star filled';
+        ratingDiv.appendChild(star);
+    }
 
-		return mentorCard;
-	}
+    const averageRating = document.createElement('span');
+    averageRating.className = 'd-inline-block average-rating';
+    averageRating.textContent = '(27)';
+
+    ratingDiv.appendChild(averageRating);
+
+    // 創建 available-info
+    const availableInfo = document.createElement('ul');
+    availableInfo.className = 'available-info';
+
+    const li1 = document.createElement('li');
+    const i1 = document.createElement('i');
+    i1.className = 'fas fa-map-marker-alt';
+    li1.appendChild(i1);
+    li1.appendChild(document.createTextNode(` ${mentor.city}, ${mentor.country}`));
+    availableInfo.appendChild(li1);
+
+    // const li2 = document.createElement('li');
+    // const i2 = document.createElement('i');
+    // i2.className = 'far fa-clock';
+    // li2.appendChild(i2);
+    // li2.appendChild(document.createTextNode(' Available on Fri, 22 Mar'));
+    // availableInfo.appendChild(li2);
+
+    const li3 = document.createElement('li');
+    const i3 = document.createElement('i');
+		i3.className = 'fas fa-book';
+    li3.appendChild(i3);
+    li3.appendChild(document.createTextNode(' $100 - $400 '));
+    
+	const iInfo = document.createElement('i');
+    // iInfo.className = 'fas fa-info-circle';
+    iInfo.setAttribute('data-bs-toggle', 'tooltip');
+    iInfo.setAttribute('title', 'Lorem Ipsum');
+    li3.appendChild(iInfo);
+    availableInfo.appendChild(li3);
+
+    const rowSm = document.createElement('div');
+    rowSm.className = 'row row-sm';
+
+    const col6a = document.createElement('div');
+    col6a.className = 'col-6';
+
+    const viewProfileBtn = document.createElement('a');
+viewProfileBtn.href = `/profile/${mentor.id}`;  // 使用模板字串來插入mentor的id
+viewProfileBtn.className = 'btn view-btn';
+viewProfileBtn.textContent = 'View Profile';
+
+
+    col6a.appendChild(viewProfileBtn);
+
+    const col6b = document.createElement('div');
+    col6b.className = 'col-6';
+
+    const bookNowBtn = document.createElement('a');
+    bookNowBtn.href = `/booking/${encryptedMentorId}`;
+    bookNowBtn.className = 'btn book-btn';
+    bookNowBtn.textContent = 'Book Now';
+
+    col6b.appendChild(bookNowBtn);
+
+    rowSm.appendChild(col6a);
+    rowSm.appendChild(col6b);
+
+    proContent.appendChild(h3);
+    proContent.appendChild(pSpeciality);
+    proContent.appendChild(ratingDiv);
+    proContent.appendChild(availableInfo);
+    proContent.appendChild(rowSm);
+
+    profileWidget.appendChild(userAvatar);
+    profileWidget.appendChild(proContent);
+
+    colDiv.appendChild(profileWidget);
+    // rowGrid.appendChild(colDiv);
+
+    return colDiv;
+}
 </script>
 @endsection

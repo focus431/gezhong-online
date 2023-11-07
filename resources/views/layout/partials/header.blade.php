@@ -22,13 +22,13 @@
 					</span>
 				</a>
 				<a href="index" class="navbar-brand logo">
-				<img src="/assets/img/logo.png" class="img-fluid" alt="Logo">
+					<img src="/assets/img/logo.png" class="img-fluid" alt="Logo">
 				</a>
 			</div>
 			<div class="main-menu-wrapper">
 				<div class="menu-header">
 					<a href="index" class="menu-logo">
-					<img src="/assets/img/logo.png" class="img-fluid" alt="Logo">
+						<img src="/assets/img/logo.png" class="img-fluid" alt="Logo">
 					</a>
 					<a id="menu_close" class="menu-close" href="javascript:void(0);">
 						<i class="fas fa-times"></i>
@@ -233,18 +233,19 @@
 							</div>
 						</div>
 						@if($user->role == 'admin')
-    <a class="dropdown-item" href="admin-dashboard">Dashboard</a>
-    <a class="dropdown-item" href="admin-settings">Settings</a>
-    <a class="dropdown-item" href="logout">Logout</a>
-@elseif($user->role == 'mentee')
-    <a class="dropdown-item" href="/dashboard_mentee">Dashboard</a>
-    <a class="dropdown-item" href="/profile-settings-mentee">Profile Settings</a>
-    <a class="dropdown-item" href="/logout">Logout</a>
-@elseif($user->role == 'mentor')
-    <a class="dropdown-item" href="/dashboard_mentor">Dashboard</a>
-    <a class="dropdown-item" href="/profile-settings-mentor">Profile Settings</a>
-    <a class="dropdown-item" href="/logout">Logout</a>
-@endif					</div>
+						<a class="dropdown-item" href="admin-dashboard">Dashboard</a>
+						<a class="dropdown-item" href="admin-settings">Settings</a>
+						<a class="dropdown-item" href="logout">Logout</a>
+						@elseif($user->role == 'mentee')
+						<a class="dropdown-item" href="/dashboard_mentee">Dashboard</a>
+						<a class="dropdown-item" href="/profile-settings-mentee">Profile Settings</a>
+						<a class="dropdown-item" href="/logout">Logout</a>
+						@elseif($user->role == 'mentor')
+						<a class="dropdown-item" href="/dashboard_mentor">Dashboard</a>
+						<a class="dropdown-item" href="/profile-settings-mentor">Profile Settings</a>
+						<a class="dropdown-item" href="/logout">Logout</a>
+						@endif
+					</div>
 				</li>
 				<!-- /User Menu -->
 				@endif
@@ -257,5 +258,5 @@
 <div class="main-wrapper">
 	@section('scripts')
 	<script src="{{ asset('assets/js/common-share.js') }}"></script>
-	
+
 	@endsection

@@ -122,6 +122,24 @@ Version      : 1.0
 	margin-right: 10px;
 }
 
+/* 自定義 購買方案 */
+/* 固定卡片高度 */
+.fixed-card {
+	height: 250px;  /* Fixed height */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+/* 置中卡片內的文字、按鈕和圖片 */
+.fixed-card .card-body {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 
 
 

@@ -29,5 +29,16 @@ class ClassSchedule extends Model
     {
         return $this->belongsTo(User::class);
     }
+   // 与 'mentor' 关联的方法，这假设您有一个 'user_id' 外键在 'class_schedules' 表中
+   public function mentor()
+   {
+       return $this->belongsTo(User::class, 'user_id');
+   }
+
+   // 与 'mentee' 关联的方法，这假设您有一个 'mentee_id' 外键在 'class_schedules' 表中
+   public function mentee()
+   {
+       return $this->belongsTo(User::class, 'mentee_id');
+   }
 }
 
