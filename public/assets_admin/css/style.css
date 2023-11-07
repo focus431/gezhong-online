@@ -58,6 +58,38 @@ Version      : 1.0
 html {
 	height: 100%;
 }
+
+
+
+
+
+/* 自訂區 */
+
+.responsive-avatar {
+	width: 100%;  /* 或者使用 vw 单位，例如 width: 10vw; */
+	height: auto;
+}
+
+/* 在你的 CSS 文件中 */
+.dataTables_wrapper .dataTable td,
+.dataTables_wrapper .dataTable th {
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 body {
 	background-color: #f8f9fa;
 	color: #333;

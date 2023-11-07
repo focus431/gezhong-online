@@ -72,7 +72,7 @@ class SearchMentorController extends Controller
         }
 
 
-        $paginatedMentors = $query->paginate(2);  // 每頁 2 條數據
+        $paginatedMentors = $query->paginate(12);  // 每頁 2 條數據
 
         $mentorIds = $paginatedMentors->pluck('id');
 

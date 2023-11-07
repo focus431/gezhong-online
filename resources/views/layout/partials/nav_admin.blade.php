@@ -4,28 +4,28 @@
 					<div id="sidebar-menu" class="sidebar-menu">
 						<ul>
 							<li class="menu-title"> 
-								<span><i class="fe fe-home"></i> Main</span>
+								<span><i class="fe fe-home"></i> {{ __('main') }}</span>
 							</li>
 							<li class="{{ Request::is('admin/index_admin') ? 'active' : '' }}"> 
-								<a href="index_admin"><span>Dashboard</span></a>
+								<a href="/admin/index_admin"><span>{{ __('dashboard') }}</span></a>
 							</li>
 							<li class="{{ Request::is('admin/mentor') ? 'active' : '' }}"> 
-								<a href="mentor"><span>Mentor</span></a>
+								<a href="/admin/mentor"><span>{{ __('mentor') }}</span></a>
 							</li>
 							<li class="{{ Request::is('admin/mentee') ? 'active' : '' }}"> 
-								<a href="mentee"><span>Mentee</span></a>
+								<a href="/admin/mentee"><span>{{ __('mentee') }}</span></a>
 							</li>
 							<li class="{{ Request::is('admin/booking-list') ? 'active' : '' }}"> 
-								<a href="booking-list"><span>Booking List</span></a>
+								<a href="/admin/booking-list"><span>{{ __('booking list') }}</span></a>
 							</li>
 							<li class="{{ Request::is('admin/categories') ? 'active' : '' }}"> 
-								<a href="categories"><span>Categories</span></a>
+								<a href="/admin/categories"><span>Categories</span></a>
 							</li>
 							<li class="{{ Request::is('admin/transactions-list') ? 'active' : '' }}"> 
-								<a href="transactions-list"><span>Transactions</span></a>
+								<a href="/admin/transactions-list"><span>{{ __('Transactions') }}</span></a>
 							</li>
 							<li class="{{ Request::is('admin/settings') ? 'active' : '' }}"> 
-								<a href="settings"><span>Settings</span></a>
+								<a href="/admin/settings"><span>{{ __('Settings') }}</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#"><span> Reports</span> <span class="menu-arrow"></span></a>
@@ -37,14 +37,14 @@
 								<span><i class="fe fe-document"></i> Pages</span>
 							</li>
 							<li class="{{ Request::is('admin/profile') ? 'active' : '' }}"> 
-								<a href="profile"><span>My Profile</span></a>
+								<a href="/admin/profile{id}"><span>My Profile</span></a>
 							</li>
 							<li class="submenu"> 
-								<a href="#"><span>Blog</span> <span class="menu-arrow"></span></a>
+								<a href="#"><span>{{ __('Blog') }}</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a class="{{ Request::is('admin/blog') ? 'active' : '' }}" href="{{ url('admin/blog') }}"> Blog </a></li>
-									<li><a class="{{ Request::is('admin/blog-details') ? 'active' : '' }}" href="{{ url('admin/blog-details') }}"> Blog Details </a></li>
-									<li><a class="{{ Request::is('admin/add-blog') ? 'active' : '' }}" href="{{ url('admin/add-blog') }}"> Add Blog </a></li>
+									<li><a class="{{ Request::is('admin/blog') ? 'active' : '' }}" href="{{ url('admin/blog') }}"> {{ __('Blog') }}</a></li>
+									<li><a class="{{ Request::is('admin/blog-details') ? 'active' : '' }}" href="{{ url('admin/blog-details') }}"> {{ __('Blog Details') }} </a></li>
+									<li><a class="{{ Request::is('admin/add-blog') ? 'active' : '' }}" href="{{ url('admin/blog/create') }}"> {{ __('Add Blog') }} </a></li>
 									<li><a class="{{ Request::is('admin/edit-blog') ? 'active' : '' }}" href="{{ url('admin/edit-blog') }}"> Edit Blog </a></li>
 								</ul>
 							</li>
@@ -65,13 +65,13 @@
 								</ul>
 							</li>
 							<li class="{{ Request::is('admin/blank-page') ? 'active' : '' }}"> 
-								<a href="blank-page"><span>Blank Page</span></a>
+								<a href="/admin/blank-page"><span>Blank Page</span></a>
 							</li>
 							<li class="menu-title"> 
 								<span><i class="fe fe-star-o"></i> UI Interface</span>
 							</li>
 							<li class="{{ Request::is('admin/components') ? 'active' : '' }}"> 
-								<a href="components"><span>Components</span></a>
+								<a href="/admin/components"><span>Components</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#"><span> Forms </span> <span class="menu-arrow"></span></a>

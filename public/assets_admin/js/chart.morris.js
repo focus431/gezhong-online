@@ -1,55 +1,38 @@
-$(function(){
-	
-	/* Morris Area Chart */
-	
-	window.mA = Morris.Area({
-	    element: 'morrisArea',
-	    data: [
-	        { y: '2013', a: 60},
-	        { y: '2014', a: 100},
-	        { y: '2015', a: 240},
-	        { y: '2016', a: 120},
-	        { y: '2017', a: 80},
-	        { y: '2018', a: 100},
-	        { y: '2019', a: 300},
-	    ],
-	    xkey: 'y',
-	    ykeys: ['a'],
-	    labels: ['Revenue'],
-	    lineColors: ['#1b5a90'],
-	    lineWidth: 2,
-		
-     	fillOpacity: 0.5,
-	    gridTextSize: 10,
-	    hideHover: 'auto',
-	    resize: true,
-		redraw: true
-	});
-	
-	/* Morris Line Chart */
-	
-	window.mL = Morris.Line({
-	    element: 'morrisLine',
-	    data: [
-	        { y: '2015', a: 100, b: 30},
-	        { y: '2016', a: 20,  b: 60},
-	        { y: '2017', a: 90,  b: 120},
-	        { y: '2018', a: 50,  b: 80},
-	        { y: '2019', a: 120,  b: 150},
-	    ],
-	    xkey: 'y',
-	    ykeys: ['a', 'b'],
-	    labels: ['Mentors', 'Mentees'],
-	    lineColors: ['#1b5a90','#ff9d00'],
-	    lineWidth: 1,
-	    gridTextSize: 10,
-	    hideHover: 'auto',
-	    resize: true,
-		redraw: true
-	});
-	$(window).on("resize", function(){
-		mA.redraw();
-		mL.redraw();
-	});
+// 假設這是從後端接收到的數據
+var monthlyCounts = {
+	'1': 10,
+	'2': 15,
+	'3': 20,
+	// 確保這個對象包含了 1 到 12 月的數據
+};
 
+// 生成一個數據數組，如果某個月份沒有數據，則學員數為 0
+var chartData = [];
+for (var month = 1; month <= 12; month++) {
+	chartData.push({
+			y: `${month < 10 ? '0' + month : month}-01`, // 格式為 'MM-DD'
+			a: monthlyCounts[month] || 0 // 如果沒有該月的數據，則為 0
+	});
+}
+
+// 使用生成的 chartData 來初始化圖表
+Morris.Area({
+	element: 'morrisArea',
+	data: chartData,
+	xkey: 'y',
+	ykeys: ['a'],
+	labels: ['Students'],
+	lineColors: ['#1b5a90'],
+	lineWidth: 2,
+	fillOpacity: 0.5,
+	gridTextSize: 10,
+	hideHover: 'auto',
+	resize: true,
+	xLabelFormat: function(x) {
+			return x.src.y.substring(0, 2); // 只顯示月份
+	},
+	yLabelFormat: function(y) {
+			return y.toString() + ' students'; // 添加 'students' 文字
+	},
+	parseTime: false // 關閉時間解析，因為我們使用的是自定義格式
 });

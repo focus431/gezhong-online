@@ -24,6 +24,7 @@
         "vue-loader": "^16.8.3"
     },
     "dependencies": {
+        "chart.js": "^4.4.0",
         "flatpickr": "^4.6.13",
         "laravel-echo": "^1.15.3",
         "pusher-js": "^8.3.0",
